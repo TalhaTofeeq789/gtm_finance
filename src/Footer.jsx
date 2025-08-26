@@ -119,11 +119,11 @@ function Footer() {
               <p>GTM Finance Pty Ltd ATF GTM Finance is a Corporate Authorised Representative (#001284748) of Platinum Wealth Advisory ABN 57 677 078 250 (AFSL 558788)</p>
               <div className="space-y-2 mt-3">
                 <p></p>
-                <p>View Financial Services</p>
-                <a href="/team/fsg.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">Financial Service Guide</a>
+                
+                <a href="/team/fsg.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">View Financial Services</a>
                 <p></p>
-                <p>View Privacy Policy</p>
-                <a href="/team/pp.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">Privacy Policy</a>
+                
+                <a href="/team/pp.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">View Privacy Policy</a>
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@ function Footer() {
               Copyright © 2025 GTM Finance. All rights reserved. ABN 5725 0815 625.
             </p>
             <p className="text-base font-medium text-white mb-3">
-              made with love ❤️ by AICE XPERT.
+              made with ❤️ by AICE XPERT.
             </p>
           </div>
         </div>

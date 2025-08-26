@@ -24,6 +24,7 @@ import Footer from './Footer'
 function MortgageBroking() {
   const navigate = useNavigate()
   const [selectedService, setSelectedService] = useState(null)
+  const [showCalendly, setShowCalendly] = useState(false)
 
   // Redirect to home page on refresh
   useEffect(() => {
@@ -279,6 +280,32 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
 
   return (
     <div className="min-h-screen bg-slate-900">
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9999,
+          background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}
+          onClick={() => setShowCalendly(false)}
+        >
+          <div style={{ position: 'relative', width: '90vw', maxWidth: 600, background: 'var(--bg-primary)', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button onClick={() => setShowCalendly(false)} style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: '#fff', fontSize: 24, cursor: 'pointer', zIndex: 2 }}>
+              <X size={28} />
+            </button>
+            <iframe
+              src="https://calendly.com/lopeyegtmfinance/20min?hide_gdpr_banner=1"
+              width="100%"
+              height="600"
+              style={{ border: 'none', borderRadius: 12, minHeight: 500 }}
+              allowFullScreen
+              title="Schedule Meeting"
+            />
+          </div>
+        </div>
+      )}
+      
       {/* Navigation */}
       <Navigation />
       
@@ -316,17 +343,15 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex justify-center items-center mt-8"
             >
-              <motion.a 
-                href="https://calendly.com/lopeyegtmfinance/20min?back=1"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button 
+                onClick={() => setShowCalendly(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
               >
                 <Calendar className="w-5 h-5" />
                 <span>Schedule a Meeting</span>
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
         </div>
@@ -535,17 +560,15 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                       `Ready to explore your ${selectedService.title.toLowerCase()} options? Schedule a complimentary consultation to discuss your specific needs and find the perfect financing solution.`
                     }
                   </p>
-                  <motion.a 
-                    href="https://calendly.com/lopeyegtmfinance/20min?back=1"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <motion.button 
+                    onClick={() => setShowCalendly(true)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center space-x-2"
                   >
                     <Calendar className="w-5 h-5" />
                     <span>Schedule a Meeting</span>
-                  </motion.a>
+                  </motion.button>
                 </div>
               </div>
             </motion.div>
@@ -574,17 +597,15 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
               <motion.div
                 className="flex justify-center items-center"
               >
-                <motion.a 
-                  href="https://calendly.com/lopeyegtmfinance/20min?back=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button 
+                  onClick={() => setShowCalendly(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
                 >
                   <Calendar className="w-5 h-5" />
                   <span>Schedule a Meeting</span>
-                </motion.a>
+                </motion.button>
               </motion.div>
             </motion.div>
           </div>
