@@ -184,7 +184,10 @@ function App() {
             <div className="hidden md:flex items-center space-x-6">
               <motion.a 
                 onClick={() => setShowCalendly(true)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  color: "white"
+                }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary px-6 py-3"
               >
@@ -394,6 +397,7 @@ function App() {
                   onClick={() => setShowCalendly(true)}
                   whileHover={{ 
                     scale: 1.02,
+                    color: "white",
                     boxShadow: "0 8px 20px rgba(59, 130, 246, 0.3)"
                   }}
                   whileTap={{ scale: 0.98 }}
@@ -984,60 +988,7 @@ function App() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <motion.div 
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--accent)' }}>
-                  <MapPin className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Visit Our Office</h3>
-                  <p style={{ color: 'var(--text-secondary)' }}>1-3 Theobald Street<br />Thornbury, VIC 3071</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--success)' }}>
-                  <Phone className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Call Us</h3>
-                  <a href="tel:1300486346" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">1300 486 346</a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full" style={{ backgroundColor: '#a855f7' }}>
-                  <Mail className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Email Us</h3>
-                  <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">lopeye@gtmfinance.com.au</a>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Follow Us</h3>
-                <div className="flex space-x-4">
-                  <a href="https://www.instagram.com/gtmfinance/" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                    <Instagram style={{ color: 'var(--text-secondary)' }} size={20} />
-                  </a>
-                  <a href="https://www.linkedin.com/company/gtm-finance" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                    <Linkedin style={{ color: 'var(--text-secondary)' }} size={20} />
-                  </a>
-                  <a href="https://m.facebook.com/profile.php?id=435081580362637" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                    <Facebook style={{ color: 'var(--text-secondary)' }} size={20} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
+          <div className="flex justify-center">
             <motion.div 
               variants={fadeInUp}
               initial="hidden"
@@ -1049,7 +1000,7 @@ function App() {
               }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="card"
+              className="card w-full max-w-2xl"
             >
               <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
               <form className="space-y-6">

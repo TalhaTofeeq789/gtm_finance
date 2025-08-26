@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react
 function Footer() {
   return (
     <footer 
-      className="py-16" 
+      className="pt-16" 
       style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}
     >
       <div className="max-w-7xl mx-auto container">
@@ -112,22 +112,31 @@ function Footer() {
 
         {/* Footer Bottom */}
         <div className="mt-10 flex flex-col items-start space-y-6">
-          {/* Copyright */}
-          <p className="text-sm font-medium tracking-wide text-gray-400">
-            © 2025 GTM Finance. All rights reserved.
-          </p>
-
           {/* Legal */}
           <div className="w-full max-w-5xl bg-[#1e2235] rounded-lg p-8 text-left border border-gray-700">
             <h3 className="font-semibold text-lg mb-3 text-blue-300 tracking-wide uppercase">Legal</h3>
             <div className="space-y-3 text-sm leading-relaxed">
               <p>ABN 57 250 815 625</p>
-              <p>Credit Representative (#001284748) of Platinum Wealth Advisory ABN 57 677 078 250 (AFSL 558788)</p>
+              <p>GTM Finance Pty Ltd ATF GTM Finance is a Corporate Authorised Representative (#001284748) of Platinum Wealth Advisory ABN 57 677 078 250 (AFSL 558788)</p>
               <div className="space-y-2 mt-3">
+                <p></p>
+                <p>View Financial Services</p>
                 <a href="/team/fsg.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">Financial Service Guide</a>
+                <p></p>
+                <p>View Privacy Policy</p>
                 <a href="/team/pp.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">Privacy Policy</a>
               </div>
             </div>
+          </div>
+
+          {/* Copyright and Credits */}
+          <div className="w-full border-t border-gray-700 pt-6 pb-4 text-center mb-6">
+            <p className="text-sm font-medium tracking-wide text-gray-400 mb-2">
+              Copyright © 2025 GTM Finance. All rights reserved. ABN 5725 0815 625.
+            </p>
+            <p className="text-base font-medium text-white mb-3">
+              made with love ❤️ by AICE XPERT.
+            </p>
           </div>
         </div>
       </div>

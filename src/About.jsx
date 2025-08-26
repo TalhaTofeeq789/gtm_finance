@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Calendar, MapPin, Phone, Mail } from 'lucide-react'
+import { Calendar, MapPin, Phone, Mail, X } from 'lucide-react'
 import Navigation from './Navigation'
 import Footer from './Footer'
 
 function About() {
   const navigate = useNavigate()
+  const [showCalendly, setShowCalendly] = useState(false)
 
   // Redirect to home page on refresh
   useEffect(() => {
@@ -46,12 +47,38 @@ function About() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9999,
+          background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}
+          onClick={() => setShowCalendly(false)}
+        >
+          <div style={{ position: 'relative', width: '90vw', maxWidth: 600, background: 'var(--bg-primary)', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button onClick={() => setShowCalendly(false)} style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: '#fff', fontSize: 24, cursor: 'pointer', zIndex: 2 }}>
+              <X size={28} />
+            </button>
+            <iframe
+              src="https://calendly.com/lopeyegtmfinance/20min?hide_gdpr_banner=1"
+              width="100%"
+              height="600"
+              style={{ border: 'none', borderRadius: 12, minHeight: 500 }}
+              allowFullScreen
+              title="Schedule Meeting"
+            />
+          </div>
+        </div>
+      )}
+      
       {/* Navigation */}
-      <Navigation />
+      <Navigation onScheduleMeeting={() => setShowCalendly(true)} />
       
       {/* Hero Section */}
       <section 
-        className="relative min-h-[60vh] flex items-center justify-center"
+        className="relative min-h-screen flex items-center justify-center"
         style={{
           backgroundImage: 'url("/hero-bg.jpg")',
           backgroundSize: 'cover',
@@ -224,17 +251,15 @@ function About() {
               Book a No-Obligation 30 Minute Consultation with GTM Finance
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <motion.a 
-                  href="https://calendly.com/lopeyegtmfinance/20min?back=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <motion.button 
+                  onClick={() => setShowCalendly(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+                  className="bg-white text-blue-600 hover:text-white hover:bg-blue-600 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-2"
                 >
                   <Calendar size={20} />
                   Schedule a Meeting
-                </motion.a>
+                </motion.button>
             </motion.div>
           </motion.div>
         </div>

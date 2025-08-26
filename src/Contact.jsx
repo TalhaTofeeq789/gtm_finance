@@ -130,57 +130,38 @@ function Contact() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Info Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <motion.div 
               variants={fadeInUp}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              className="space-y-8"
+              className="text-center space-y-4"
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--accent)' }}>
-                  <MapPin className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Visit Our Office</h3>
-                  <p style={{ color: 'var(--text-secondary)' }}>1-3 Theobald Street<br />Thornbury, VIC 3071</p>
-                </div>
+              <div className="p-4 rounded-full inline-block" style={{ backgroundColor: 'var(--accent)' }}>
+                <MapPin className="text-white" size={28} />
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--success)' }}>
-                  <Phone className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Call Us</h3>
-                  <a href="tel:1300486346" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">1300 486 346</a>
-                </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Visit Our Office</h3>
+                <p style={{ color: 'var(--text-secondary)' }}>1-3 Theobald Street<br />Thornbury, VIC 3071</p>
               </div>
+            </motion.div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full" style={{ backgroundColor: '#a855f7' }}>
-                  <Mail className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Email Us</h3>
-                  <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">lopeye@gtmfinance.com.au</a>
-                </div>
+            <motion.div 
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center space-y-4"
+            >
+              <div className="p-4 rounded-full inline-block" style={{ backgroundColor: 'var(--success)' }}>
+                <Phone className="text-white" size={28} />
               </div>
-
-              <div className="pt-6">
-                <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Follow Us</h3>
-                <div className="flex space-x-4">
-                  <a href="https://www.instagram.com/gtmfinance/" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                    <Instagram style={{ color: 'var(--text-secondary)' }} size={20} />
-                  </a>
-                  <a href="https://www.linkedin.com/company/gtm-finance" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                    <Linkedin style={{ color: 'var(--text-secondary)' }} size={20} />
-                  </a>
-                  <a href="https://m.facebook.com/profile.php?id=435081580362637" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                    <Facebook style={{ color: 'var(--text-secondary)' }} size={20} />
-                  </a>
-                </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Call Us</h3>
+                <a href="tel:1300486346" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">1300 486 346</a>
               </div>
             </motion.div>
 
@@ -190,7 +171,27 @@ function Contact() {
               whileInView="animate"
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="card"
+              className="text-center space-y-4"
+            >
+              <div className="p-4 rounded-full inline-block" style={{ backgroundColor: '#a855f7' }}>
+                <Mail className="text-white" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Email Us</h3>
+                <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">lopeye@gtmfinance.com.au</a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Centered Contact Form */}
+          <div className="flex justify-center">
+            <motion.div 
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="card w-full max-w-2xl"
             >
               <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
               <form className="space-y-6">
@@ -282,6 +283,29 @@ function Contact() {
               </form>
             </motion.div>
           </div>
+
+          {/* Social Media Section */}
+          <motion.div 
+            variants={fadeInUp}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-16"
+          >
+            <h3 className="text-lg font-semibold mb-6" style={{ color: 'var(--text-primary)' }}>Follow Us</h3>
+            <div className="flex justify-center space-x-6">
+              <a href="https://www.instagram.com/gtmfinance/" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                <Instagram style={{ color: 'var(--text-secondary)' }} size={24} />
+              </a>
+              <a href="https://www.linkedin.com/company/gtm-finance" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                <Linkedin style={{ color: 'var(--text-secondary)' }} size={24} />
+              </a>
+              <a href="https://m.facebook.com/profile.php?id=435081580362637" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+                <Facebook style={{ color: 'var(--text-secondary)' }} size={24} />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
