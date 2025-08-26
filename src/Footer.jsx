@@ -116,7 +116,6 @@ function Footer() {
           <div className="w-full max-w-5xl bg-[#1e2235] rounded-lg p-8 text-left border border-gray-700">
             <h3 className="font-semibold text-lg mb-3 text-blue-300 tracking-wide uppercase">Legal</h3>
             <div className="space-y-3 text-sm leading-relaxed">
-              <p>ABN 57 250 815 625</p>
               <p>GTM Finance Pty Ltd ATF GTM Finance is a Corporate Authorised Representative (#001284748) of Platinum Wealth Advisory ABN 57 677 078 250 (AFSL 558788)</p>
               <div className="space-y-2 mt-3">
                 <p></p>
