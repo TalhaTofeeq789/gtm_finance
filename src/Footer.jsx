@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 function Footer() {
   return (
     <footer 
       className="pt-16" 
-      style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}
+      style={{ backgroundColor: '#000000', color: 'var(--text-secondary)' }}
     >
       <div className="max-w-7xl mx-auto container">
         {/* Top Grid */}
@@ -30,34 +32,34 @@ function Footer() {
                 className="hover:scale-110 transition-transform hover:drop-shadow-[0_0_6px_#e1306c]" 
                 style={{ color: '#e1306c' }}
               >
-                <Instagram size={26} />
+                <FontAwesomeIcon icon={faInstagram} size="lg" />
               </a>
               <a 
                 href="https://www.linkedin.com/company/gtm-finance" 
                 className="hover:scale-110 transition-transform hover:drop-shadow-[0_0_6px_#0a66c2]" 
                 style={{ color: '#0a66c2' }}
               >
-                <Linkedin size={26} />
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
               </a>
               <a 
                 href="https://m.facebook.com/profile.php?id=435081580362637" 
                 className="hover:scale-110 transition-transform hover:drop-shadow-[0_0_6px_#1877f3]" 
                 style={{ color: '#1877f3' }}
               >
-                <Facebook size={26} />
+                <FontAwesomeIcon icon={faFacebook} size="lg" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="pl-4 md:pl-8">
+          <div className="pl-8 md:pl-16">
             <h3 
               className="text-xl font-semibold mb-4 tracking-wide uppercase" 
               style={{ color: 'var(--accent-primary, #4f8cff)' }}
             >
               Quick Links
             </h3>
-            <div className="flex flex-col gap-3 text-base">
+            <div className="flex flex-col gap-1 text-base">
               <Link 
                 to="/about" 
                 className="text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all"
@@ -104,7 +106,7 @@ function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={20} style={{ color: 'var(--accent-primary, #4f8cff)' }} />
-                <a href="mailto:lopeye@gtmfinance.com.au" className="hover:text-blue-400 transition-colors">lopeye@gtmfinance.com.au</a>
+                <a href="mailto:lopeye@gtmfinance.com.au" className="hover:text-blue-400 transition-colors">admin@gtmfinance.com.au</a>
               </div>
             </div>
           </div>
@@ -113,18 +115,16 @@ function Footer() {
         {/* Footer Bottom */}
         <div className="mt-10 flex flex-col items-start space-y-6">
           {/* Legal */}
-          <div className="w-full max-w-5xl bg-[#1e2235] rounded-lg p-8 text-left border border-gray-700">
-            <h3 className="font-semibold text-lg mb-3 text-blue-300 tracking-wide uppercase">Legal</h3>
-            <div className="space-y-3 text-sm leading-relaxed">
-              <p>GTM Finance Pty Ltd ATF GTM Finance is a Corporate Authorised Representative (#001284748) of Platinum Wealth Advisory ABN 57 677 078 250 (AFSL 558788)</p>
-              <div className="space-y-2 mt-3">
-                <p></p>
+          <div className="space-y-3 text-sm leading-relaxed">
+            <br />
+            <p>GTM Finance Pty Ltd ATF GTM Finance is a Corporate Authorised Representative (#001284748) of Platinum Wealth Advisory ABN 57 677 078 250 (AFSL 558788)</p>
+            <div className="space-y-2 mt-3">
+              <p></p>
                 
-                <a href="/team/fsg.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">View Financial Services</a>
-                <p></p>
+              <a href="/team/fsg.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">View Financial Services</a>
+              <p></p>
                 
-                <a href="/team/pp.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">View Privacy Policy</a>
-              </div>
+              <a href="/team/pp.pdf" className="block hover:text-blue-400 transition-colors text-blue-200">View Privacy Policy</a>
             </div>
           </div>
 
@@ -134,7 +134,7 @@ function Footer() {
               Copyright © 2025 GTM Finance. All rights reserved. ABN 5725 0815 625.
             </p>
             <p className="text-base font-medium text-white mb-3">
-              made with ❤️ by AICE XPERT.
+              made by <a href="https://aicexpert.com/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors underline">AICE XPERT</a>.
             </p>
           </div>
         </div>

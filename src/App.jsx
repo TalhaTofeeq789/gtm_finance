@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { X, Menu, ArrowRight, Shield, TrendingUp, Users, Calendar, Phone, Mail, MapPin, Instagram, Linkedin, Facebook, Star, CheckCircle, Download } from 'lucide-react'
+import { X, Menu, ArrowRight, Shield, TrendingUp, Users, Calendar, Phone, Mail, MapPin, Instagram, Linkedin, Facebook, Star, CheckCircle, Download, ChevronLeft, ChevronRight } from 'lucide-react'
 import './App.css'
 import Footer from './Footer'
 
@@ -13,7 +13,14 @@ function App() {
   const [typingComplete, setTypingComplete] = useState(false)
   const [showCalendly, setShowCalendly] = useState(false)
   const [hoveredResource, setHoveredResource] = useState(null)
-  
+  const [showDownloadModal, setShowDownloadModal] = useState(false)
+  const [selectedResource, setSelectedResource] = useState(null)
+  const [downloadForm, setDownloadForm] = useState({
+    name: '',
+    phone: '',
+    email: ''
+  })
+
   const fullText = "Take Control of Your "
   const secondLineText = "Financial Future"
 
@@ -58,6 +65,50 @@ function App() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Handle download button click
+  const handleDownloadClick = (resource) => {
+    setSelectedResource(resource)
+    setShowDownloadModal(true)
+  }
+
+  // Handle form submission and download
+  const handleDownloadSubmit = (e) => {
+    e.preventDefault()
+    
+    // Validate form
+    if (!downloadForm.name || !downloadForm.phone || !downloadForm.email) {
+      alert('Please fill in all fields')
+      return
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(downloadForm.email)) {
+      alert('Please enter a valid email address')
+      return
+    }
+
+    // Here you would typically send the form data to your server
+    console.log('Download form data:', downloadForm)
+    console.log('Selected resource:', selectedResource)
+
+    // Close modal and reset form
+    setShowDownloadModal(false)
+    setDownloadForm({ name: '', phone: '', email: '' })
+    
+    // Open the PDF in a new tab
+    window.open(selectedResource.link, '_blank')
+  }
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setDownloadForm(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
 
   // Animation variants for different entry effects
   const fadeIn = {
@@ -122,6 +173,94 @@ function App() {
     },
   ]
 
+  // Reviews data
+  const reviews = [
+    {
+      "name": "Bridgeta Dausi",
+      "rating": 5,
+      "review": "GTM Finance made securing my home loan a smooth and stress-free experience. Their team was professional, responsive, and always willing to explain things clearly. I'd like to give a special mention to Modupe, who went above and beyond to guide me through the process. Her patience, dedication, and attention to detail really stood out. I highly recommend GTM Finance to anyone looking for reliable support with their home loan."
+    },
+    {
+      "name": "Stanley Ugochukwu",
+      "rating": 5,
+      "review": "GTM Finance is very reliable, efficient and professional. Without them my loan acquisition journey would have been a nightmare. I was guided every step of the way and had all the support and encouragement I needed to bring my financial dreams to fruition. I would highly recommend them to anyone seeking seamless financial advise, anytime and anyday. Kudos!"
+    },
+    {
+      "name": "Nnaemeka Meribe",
+      "rating": 5,
+      "review": "Getting financial advice from GTM Finance is my best financial move ever. They have been meticulous, professional and reassuring in their dealings with me. It has been so far, so good and I recommend them without reservations."
+    },
+    {
+      "name": "Chidinma Maudlyn Ejiogu",
+      "rating": 5,
+      "review": "Exceptional experience with the team at GTM Finance. Assisted in getting me a new loan product and still kept in touch when it was time to refinance. Willing to listen and always puts the customer first."
+    },
+    {
+      "name": "James Owen",
+      "rating": 5,
+      "review": "After the collapse of my previous super management team, Lopeye was extremely helpful in helping me with my very limited knowledge to start again. As stressful as it may well be to deal with older people with very limited knowledge about investment. Lopeye continues to help with every issue that arises."
+    },
+    {
+      "name": "Irol Caguimbal",
+      "rating": 5,
+      "review": "Lopeye's advice has broadened our financial knowledge and he directed us to the right direction. Their wealth of knowledge and experience and professionalism is second to none. Indeed highly recommended!!!"
+    },
+    {
+      "name": "Michelle Taran",
+      "rating": 5,
+      "review": "Personable and easy to work with. Lopeye is able to adjust to personal goals and changing circumstances. We have really enjoyed working with him."
+    },
+    {
+      "name": "Nadine Spencer",
+      "rating": 5,
+      "review": "Lopeye and I started working together last year. Personally I find the world of personal finance really daunting and very complicated, but Lopeye was/is there with me every step of the way. He is thoughtful, collaborative, an excellent communicator and very thorough. He helps me understand everything just that little bit better and is very patient with all my questions. Our sessions are always very energising and I walk away with a sense of empowerment."
+    },
+    {
+      "name": "Chloe Thomson",
+      "rating": 5,
+      "review": "I owe my current financial situation of stability, certainty and flexibility to the GTM finance team. I would not trust anyone else, the way I trust the people in this company. So grateful to have found them and could not recommend high enough. I would recommend to everyone and anyone. These services are a must!"
+    },
+    {
+      "name": "Navin Jay",
+      "rating": 5,
+      "review": "GTM Finance has helped me restructure my finances and help me achieve my savings goals for the last 2 years now! They are highly knowledgeable and is my go to for any financial related advice! Highly RECOMMENDED!"
+    }
+  ]
+
+  // Helper function to get initials from name
+  const getInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase()
+  }
+
+  // Reviews navigation functions
+  // Reviews pagination - show exactly 3 reviews at a time
+  const [currentPage, setCurrentPage] = useState(0);
+  const reviewsPerPage = 3;
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+  // Get current reviews to display (exactly 3 at a time)
+  const getCurrentReviews = () => {
+    const startIndex = currentPage * reviewsPerPage;
+    const endIndex = startIndex + reviewsPerPage;
+    return reviews.slice(startIndex, endIndex);
+  };
+
+  const goToPrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  const goToNext = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  // Check if arrows should be disabled
+  const isLeftDisabled = currentPage === 0;
+  const isRightDisabled = currentPage === totalPages - 1;
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Calendly Modal */}
@@ -149,6 +288,118 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Download Modal */}
+      {showDownloadModal && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9999,
+          background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}
+          onClick={() => setShowDownloadModal(false)}
+        >
+          <div style={{ 
+            position: 'relative', 
+            width: '90vw', 
+            maxWidth: 500, 
+            background: '#1a202c', 
+            borderRadius: 16, 
+            boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+            padding: '2rem'
+          }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button 
+              onClick={() => setShowDownloadModal(false)} 
+              style={{ 
+                position: 'absolute', 
+                top: 12, 
+                right: 12, 
+                background: 'none', 
+                border: 'none', 
+                color: '#fff', 
+                fontSize: 24, 
+                cursor: 'pointer', 
+                zIndex: 2 
+              }}
+            >
+              <X size={28} />
+            </button>
+            
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-white mb-2">Download Resource</h3>
+              <p className="text-gray-300">Please provide your details to download "{selectedResource?.title}"</p>
+            </div>
+
+            <form onSubmit={handleDownloadSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={downloadForm.name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={downloadForm.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={downloadForm.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
+                  placeholder="Enter your email address"
+                  required
+                />
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowDownloadModal(false)}
+                  className="flex-1 px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors duration-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2"
+                >
+                  <Download size={20} />
+                  Download
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav 
         className="fixed w-full z-50 transition-all duration-300"
@@ -318,7 +569,7 @@ function App() {
                           repeat: Infinity,
                           ease: "easeInOut" 
                         }}
-                        className="inline-block ml-1 text-blue-400"
+                        className="inline-block ml-1 text-white"
                       >
                         |
                       </motion.span>
@@ -340,7 +591,7 @@ function App() {
                         stiffness: 120,
                         damping: 30
                       }}
-                      className="text-blue-400 inline-block"
+                      className="text-white inline-block"
                     >
                       {showSecondLine && (
                         <>
@@ -368,7 +619,7 @@ function App() {
                                 duration: 2.5,
                                 ease: "easeInOut" 
                               }}
-                              className="inline-block ml-1 text-blue-400"
+                              className="inline-block ml-1 text-white"
                             >
                               |
                             </motion.span>
@@ -789,9 +1040,12 @@ function App() {
                 >
                   <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{res.title}</h3>
                   <p className="mb-4 text-sm" style={{ color: 'var(--text-secondary)' }}>{res.desc}</p>
-                  <a href={res.link} target="_blank" rel="noopener noreferrer" className={res.btnClass}>
+                  <button 
+                    onClick={() => handleDownloadClick(res)} 
+                    className={res.btnClass}
+                  >
                     Download PDF
-                  </a>
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -828,101 +1082,102 @@ function App() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+          {/* Reviews Container with Arrow Navigation */}
+          <div className="relative max-w-6xl mx-auto">
+            {/* Left Arrow - Enhanced UI */}
+            <button
+              onClick={goToPrevious}
+              disabled={isLeftDisabled}
+              className={`absolute left-0 top-1/2 transform -translate-y-6 -translate-x-4 z-10 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl ${
+                isLeftDisabled 
+                  ? 'bg-gray-700/40 text-gray-500 cursor-not-allowed opacity-30 blur-[1px] backdrop-blur-sm' 
+                  : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 hover:scale-110 hover:shadow-2xl active:scale-95 backdrop-blur-sm border border-blue-500/30'
+              }`}
+              style={{ 
+                left: '-28px',
+                boxShadow: isLeftDisabled 
+                  ? '0 4px 20px rgba(0,0,0,0.1)' 
+                  : '0 8px 32px rgba(59, 130, 246, 0.4), 0 4px 16px rgba(0,0,0,0.2)'
               }}
-              viewport={{ once: true }}
-              className="card relative"
             >
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="text-yellow-400 fill-current" size={16} />
-                ))}
-              </div>
-              <p className="mb-6 italic" style={{ color: 'var(--text-secondary)' }}>
-                "GTM Finance helped us create a comprehensive financial plan that gave us the confidence to invest in our future. Their professional guidance has been invaluable."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--accent-light)' }}>
-                  <span className="font-semibold" style={{ color: 'var(--accent)' }}>SJ</span>
-                </div>
-                <div>
-                  <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Sarah Johnson</p>
-                  <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Melbourne</p>
-                </div>
-              </div>
-            </motion.div>
+              <ChevronLeft size={28} strokeWidth={2.5} />
+            </button>
 
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+            {/* Right Arrow - Enhanced UI */}
+            <button
+              onClick={goToNext}
+              disabled={isRightDisabled}
+              className={`absolute right-0 top-1/2 transform -translate-y-6 translate-x-4 z-10 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl ${
+                isRightDisabled 
+                  ? 'bg-gray-700/40 text-gray-500 cursor-not-allowed opacity-30 blur-[1px] backdrop-blur-sm' 
+                  : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 hover:scale-110 hover:shadow-2xl active:scale-95 backdrop-blur-sm border border-blue-500/30'
+              }`}
+              style={{ 
+                right: '-28px',
+                boxShadow: isRightDisabled 
+                  ? '0 4px 20px rgba(0,0,0,0.1)' 
+                  : '0 8px 32px rgba(59, 130, 246, 0.4), 0 4px 16px rgba(0,0,0,0.2)'
               }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="card relative"
             >
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="text-yellow-400 fill-current" size={16} />
-                ))}
-              </div>
-              <p className="mb-6 italic" style={{ color: 'var(--text-secondary)' }}>
-                "The mortgage broking service was exceptional. They found us a better rate and made the whole process seamless. Highly recommend their expertise."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
-                  <span className="font-semibold" style={{ color: 'var(--success)' }}>MT</span>
-                </div>
-                <div>
-                  <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Michael Thompson</p>
-                  <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Brunswick</p>
-                </div>
-              </div>
-            </motion.div>
+              <ChevronRight size={28} strokeWidth={2.5} />
+            </button>
 
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+            {/* Reviews Display - Exactly 3 reviews at a time */}
+            <div 
+              className="overflow-hidden pb-6" 
+              style={{ 
+                width: '100%',
+                maxWidth: '1000px',
+                margin: '0 auto'
               }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="card relative"
             >
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="text-yellow-400 fill-current" size={16} />
+              <div className="grid grid-cols-3 gap-6">
+                {getCurrentReviews().map((review, index) => (
+                  <motion.div 
+                    key={`${currentPage}-${index}`}
+                    variants={fadeIn}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover={{ 
+                      scale: 1.02, 
+                      y: -8,
+                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                    }}
+                    transition={{ delay: index * 0.1 }}
+                    className="card relative"
+                    style={{ 
+                      height: 'auto'
+                    }}
+                  >
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="text-yellow-400 fill-current" size={16} />
+                      ))}
+                    </div>
+                    <p className="mb-6 italic text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                      "{review.review}"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold" 
+                           style={{ 
+                             backgroundColor: `hsl(${(currentPage * 3 + index) * 36}, 70%, 50%)`, 
+                             color: 'white' 
+                           }}>
+                        {getInitials(review.name)}
+                      </div>
+                      <div>
+                        <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>
+                          {review.name}
+                        </p>
+                        <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
+                          Verified Client
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
-              <p className="mb-6 italic" style={{ color: 'var(--text-secondary)' }}>
-                "Professional, knowledgeable, and truly caring about our financial wellbeing. GTM Finance turned our financial confusion into a clear, actionable plan."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(168, 85, 247, 0.1)' }}>
-                  <span className="font-semibold" style={{ color: '#a855f7' }}>LC</span>
-                </div>
-                <div>
-                  <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Lisa Chen</p>
-                  <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>Richmond</p>
-                </div>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -943,16 +1198,19 @@ function App() {
             <motion.p variants={fadeInUp} className="text-xl opacity-90 max-w-2xl mx-auto">
               Book a No-Obligation 30 Minute Consultation with GTM Finance
             </motion.p>
-            <motion.div variants={fadeInUp}>
-              <motion.a 
-                onClick={() => setShowCalendly(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
-              >
-                <Calendar size={20} />
-                Schedule a Meeting
-              </motion.a>
+            <motion.div variants={fadeInUp} className="max-w-2xl mx-auto">
+              <iframe
+                src="https://calendly.com/lopeyegtmfinance/20min?embed_domain=localhost&embed_type=Inline"
+                width="100%"
+                height="550"
+                style={{ 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  background: 'transparent'
+                }}
+                allowFullScreen
+                title="Schedule Meeting"
+              />
             </motion.div>
           </motion.div>
         </div>
@@ -1098,14 +1356,6 @@ function App() {
       {/* Map Section */}
       <section className="py-16" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto container">
-          <div className="text-center space-y-6 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: 'var(--text-primary)' }}>
-              Visit Our Office
-            </h2>
-            <p className="text-xl max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Located in the heart of Thornbury, we're easily accessible and ready to meet with you in person.
-            </p>
-          </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -1145,7 +1395,8 @@ function App() {
                     <div>
                       <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Email</h4>
                       <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--accent)' }} className="hover:opacity-75">
-                        lopeye@gtmfinance.com.au
+                        
+                        admin@gtmfinance.com.au
                       </a>
                     </div>
                   </div>
@@ -1155,7 +1406,7 @@ function App() {
             
             <div className="map-container">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.2864476394386!2d144.99657921531716!3d-37.76084897976168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2s1%2F3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1629789455165!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.4566391492453!2d145.02429707504692!3d-37.75588973073136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad64440a20c5be1%3A0xba61b672ba0aad86!2s1-3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1756291050617!5m2!1sen!2s"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}

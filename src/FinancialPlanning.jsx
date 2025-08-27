@@ -405,7 +405,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
             className="space-y-8"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              FINANCIAL <span className="text-blue-400">PLANNING</span>
+              FINANCIAL PLANNING
             </h1>
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
               Comprehensive wealth strategies and investment planning to secure your financial future.

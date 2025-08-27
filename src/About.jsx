@@ -8,6 +8,17 @@ import Footer from './Footer'
 function About() {
   const navigate = useNavigate()
 
+  // Smooth scroll function
+  const scrollToAboutSection = () => {
+    const aboutSection = document.getElementById('about-section')
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   // Redirect to home page on refresh
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -68,12 +79,13 @@ function About() {
             className="space-y-8"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
-              LIVE FOR TODAY <span className="text-blue-400">AND FOR TOMORROW</span>
+              LIVE FOR TODAY AND FOR TOMORROW
             </h1>
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
               We can give you the best of both worlds.
             </p>
             <motion.button 
+              onClick={scrollToAboutSection}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -85,7 +97,7 @@ function About() {
       </section>
 
       {/* About Us Content Section */}
-      <section className="py-20" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+      <section id="about-section" className="py-20" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
         <div className="w-full max-w-4xl mx-auto px-4">
           <motion.div 
             variants={staggerContainer}
@@ -108,12 +120,14 @@ function About() {
               <p>
                 You've worked hard to build a successful career and a lifestyle you're proud of. You earn good money, and you're ready to take the next step in achieving your financial goals—without compromising the lifestyle you value. After all, isn't that what it's all about?
               </p>
+              <br />
               <p>
                 At <span className="text-blue-400 font-semibold">GTM Finance</span>, we specialize in turning your ambitious goals into a clear, actionable financial plan that aligns with your life today and your aspirations for the future.
               </p>
               <p>
                 Whether you're looking to renovate or purchase a holiday home, start investing, retire early, reduce your tax burden, launch a business, or indulge in multiple unforgettable international holidays each year, we're here to make it happen.
               </p>
+              <br />
               <p>
                 At <span className="text-blue-400 font-semibold">GTM Finance</span>, we pride ourselves on being personal and proactive. Our expert team will guide you every step of the way, leveraging our proven strategies to help you create the future you've envisioned. Let's build the life you deserve—together.
               </p>
@@ -171,10 +185,10 @@ function About() {
               <div className="mb-6">
                 <div className="w-44 h-44 rounded-full overflow-hidden mx-auto shadow-2xl border-4 border-blue-700 bg-slate-800">
                   <img 
-                    src="/team/picture2.png" 
+                    src="/team/picture4.jpg" 
                     alt="Modupe Oyekanmi" 
                     className="w-full h-full object-cover"
-                    style={{ objectFit: 'cover', objectPosition: 'center center', transform: 'scale(1.0)' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center center', transform: 'scale(1.1)' }}
                   />
                 </div>
               </div>
@@ -196,7 +210,7 @@ function About() {
                     src="/team/ev.jpg" 
                     alt="Evelyne Albrecht" 
                     className="w-full h-full object-cover"
-                    style={{ objectFit: 'cover', objectPosition: 'center top', transform: 'scale(1.2)' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center center', transform: 'scale(1.1)' }}
                   />
                 </div>
               </div>

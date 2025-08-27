@@ -70,7 +70,7 @@ function Contact() {
             className="space-y-8"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              CONTACT US <span className="text-blue-400">TODAY</span>
+              CONTACT US TODAY
             </h1>
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
               We can give you the best of both worlds.
@@ -169,7 +169,7 @@ function Contact() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Email Us</h3>
-                <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">lopeye@gtmfinance.com.au</a>
+                <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">admin@gtmfinance.com.au</a>
               </div>
             </motion.div>
           </div>

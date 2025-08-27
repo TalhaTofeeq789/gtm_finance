@@ -802,3 +802,13 @@ a:focus {
   position: relative;
   z-index: 2;
 }
+
+/* Hide scrollbar for horizontal reviews carousel */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-x-auto {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

@@ -332,7 +332,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
             className="space-y-8"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              MORTGAGE <span className="text-blue-400">BROKING</span>
+              MORTGAGE BROKING
             </h1>
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
               Expert mortgage advice and competitive lending solutions for your property goals.
