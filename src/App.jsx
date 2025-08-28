@@ -16,6 +16,7 @@ function App() {
   const [hoveredResource, setHoveredResource] = useState(null)
   const [showDownloadModal, setShowDownloadModal] = useState(false)
   const [selectedResource, setSelectedResource] = useState(null)
+  const [isEmailSending, setIsEmailSending] = useState(false)
   const [downloadForm, setDownloadForm] = useState({
     name: '',
     phone: '',
@@ -90,19 +91,7 @@ function App() {
       return
     }
 
-    // Prepare email data
-    const emailData = {
-      userInfo: {
-        name: downloadForm.name,
-        phone: downloadForm.phone,
-        email: downloadForm.email
-      },
-      resource: {
-        title: selectedResource.title,
-        fileName: selectedResource.link,
-        downloadTime: new Date().toISOString()
-      }
-    }
+    setIsEmailSending(true)
 
     try {
       // Send email notification using EmailJS
@@ -117,6 +106,9 @@ function App() {
       
       console.log('Download notification email sent successfully')
       
+      // Show success message
+      alert('Thank you! Your download will start shortly. We have been notified of your download.')
+      
       // Close modal and reset form
       setShowDownloadModal(false)
       setDownloadForm({ name: '', phone: '', email: '' })
@@ -126,55 +118,15 @@ function App() {
       
     } catch (error) {
       console.error('Failed to send email notification:', error)
-      alert('Download started, but email notification failed. Please contact support if needed.')
+      alert('Download started successfully! Note: Email notification may have failed, but your download is proceeding.')
       
       // Still allow download even if email fails
       setShowDownloadModal(false)
       setDownloadForm({ name: '', phone: '', email: '' })
       window.open(selectedResource.link, '_blank')
+    } finally {
+      setIsEmailSending(false)
     }
-  }
-
-  // Email sending function 
-  const sendDownloadNotificationEmail = async (emailData) => {
-    
-    const emailPayload = {
-      to: 'talhatofeeq2003@gmail.com', // Your business email
-      subject: `New Ebook Download: ${emailData.resource.title}`,
-      html: `
-        <h2>New Ebook Download Notification</h2>
-        <h3>User Information:</h3>
-        <p><strong>Name:</strong> ${emailData.userInfo.name}</p>
-        <p><strong>Phone:</strong> ${emailData.userInfo.phone}</p>
-        <p><strong>Email:</strong> ${emailData.userInfo.email}</p>
-        
-        <h3>Downloaded Resource:</h3>
-        <p><strong>Ebook Title:</strong> ${emailData.resource.title}</p>
-        <p><strong>File:</strong> ${emailData.resource.fileName}</p>
-        <p><strong>Download Time:</strong> ${new Date(emailData.resource.downloadTime).toLocaleString()}</p>
-      `
-    }
-
-    // Simulate API call (replace with actual email service)
-    console.log('EMAIL PLACEHOLDER - Would send:', emailPayload)
-    
-    // Uncomment and modify this section when integrating with a real email service:
-    /*
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailPayload)
-    })
-    
-    if (!response.ok) {
-      throw new Error('Failed to send email')
-    }
-    */
-    
-    // For now, just simulate a successful email send
-    return Promise.resolve('Email sent successfully')
   }
 
   // Handle form input changes
@@ -465,10 +417,24 @@ function App() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2"
+                  disabled={isEmailSending}
+                  className={`flex-1 px-6 py-3 text-white rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2 ${
+                    isEmailSending 
+                      ? 'bg-gray-600 cursor-not-allowed' 
+                      : 'bg-blue-600 hover:bg-blue-700'
+                  }`}
                 >
-                  <Download size={20} />
-                  Download
+                  {isEmailSending ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Download size={20} />
+                      Download
+                    </>
+                  )}
                 </button>
               </div>
             </form>
