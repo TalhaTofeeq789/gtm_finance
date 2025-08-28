@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import Navigation from './Navigation'
 import Footer from './Footer'
 
@@ -284,16 +286,16 @@ function Contact() {
             transition={{ delay: 0.4 }}
             className="text-center mt-16"
           >
-            <h3 className="text-lg font-semibold mb-6" style={{ color: 'var(--text-primary)' }}>Follow Us</h3>
+            <h3 className="text-lg font-semibold m-6" style={{ color: 'var(--text-primary)' }}>Follow Us</h3>
             <div className="flex justify-center space-x-6">
               <a href="https://www.instagram.com/gtmfinance/" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                <Instagram style={{ color: 'var(--text-secondary)' }} size={24} />
+                <FontAwesomeIcon icon={faInstagram} size="lg" />
               </a>
               <a href="https://www.linkedin.com/company/gtm-finance" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                <Linkedin style={{ color: 'var(--text-secondary)' }} size={24} />
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
               </a>
               <a href="https://m.facebook.com/profile.php?id=435081580362637" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
-                <Facebook style={{ color: 'var(--text-secondary)' }} size={24} />
+                <FontAwesomeIcon icon={faFacebook} size="lg" />
               </a>
             </div>
           </motion.div>

@@ -73,7 +73,7 @@ function App() {
   }
 
   // Handle form submission and download
-  const handleDownloadSubmit = (e) => {
+  const handleDownloadSubmit = async (e) => {
     e.preventDefault()
     
     // Validate form
@@ -89,16 +89,84 @@ function App() {
       return
     }
 
-    // Here you would typically send the form data to your server
-    console.log('Download form data:', downloadForm)
-    console.log('Selected resource:', selectedResource)
+    // Prepare email data
+    const emailData = {
+      userInfo: {
+        name: downloadForm.name,
+        phone: downloadForm.phone,
+        email: downloadForm.email
+      },
+      resource: {
+        title: selectedResource.title,
+        fileName: selectedResource.link,
+        downloadTime: new Date().toISOString()
+      }
+    }
 
-    // Close modal and reset form
-    setShowDownloadModal(false)
-    setDownloadForm({ name: '', phone: '', email: '' })
+    try {
+      // Send email notification (placeholder for actual email service)
+      await sendDownloadNotificationEmail(emailData)
+      
+      console.log('Download form data sent via email:', emailData)
+      
+      // Close modal and reset form
+      setShowDownloadModal(false)
+      setDownloadForm({ name: '', phone: '', email: '' })
+      
+      // Open the PDF in a new tab
+      window.open(selectedResource.link, '_blank')
+      
+    } catch (error) {
+      console.error('Failed to send email notification:', error)
+      alert('Download started, but email notification failed. Please contact support if needed.')
+      
+      // Still allow download even if email fails
+      setShowDownloadModal(false)
+      setDownloadForm({ name: '', phone: '', email: '' })
+      window.open(selectedResource.link, '_blank')
+    }
+  }
+
+  // Email sending function 
+  const sendDownloadNotificationEmail = async (emailData) => {
     
-    // Open the PDF in a new tab
-    window.open(selectedResource.link, '_blank')
+    const emailPayload = {
+      to: 'talhatofeeq2003@gmail.com', // Your business email
+      subject: `New Ebook Download: ${emailData.resource.title}`,
+      html: `
+        <h2>New Ebook Download Notification</h2>
+        <h3>User Information:</h3>
+        <p><strong>Name:</strong> ${emailData.userInfo.name}</p>
+        <p><strong>Phone:</strong> ${emailData.userInfo.phone}</p>
+        <p><strong>Email:</strong> ${emailData.userInfo.email}</p>
+        
+        <h3>Downloaded Resource:</h3>
+        <p><strong>Ebook Title:</strong> ${emailData.resource.title}</p>
+        <p><strong>File:</strong> ${emailData.resource.fileName}</p>
+        <p><strong>Download Time:</strong> ${new Date(emailData.resource.downloadTime).toLocaleString()}</p>
+      `
+    }
+
+    // Simulate API call (replace with actual email service)
+    console.log('EMAIL PLACEHOLDER - Would send:', emailPayload)
+    
+    // Uncomment and modify this section when integrating with a real email service:
+    /*
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailPayload)
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to send email')
+    }
+    */
+    
+    // For now, just simulate a successful email send
+    return Promise.resolve('Email sent successfully')
   }
 
   // Handle form input changes
