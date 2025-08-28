@@ -436,7 +436,7 @@ function App() {
   const isRightDisabled = currentPage === totalPages - 1;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'transparent' }}>
       {/* Calendly Modal */}
       {showCalendly && (
         <div style={{
@@ -678,24 +678,29 @@ function App() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <motion.section
-        id="home"
-        className="hero-section pt-16 relative overflow-hidden"
+      {/* Gradient Background Container for Hero + About + Services */}
+      <div 
+        className="relative"
         style={{
-          backgroundImage: 'url("/hero-bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          background: 'linear-gradient(to bottom, #000000 0%, #1e40af 50%, #ffffff 100%)',
+          minHeight: '300vh',
+          position: 'relative',
           zIndex: 1
         }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeInUp}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40" style={{ zIndex: 2 }}></div>
+        {/* Hero Section */}
+        <motion.section
+          id="home"
+          className="hero-section pt-16 relative overflow-hidden"
+          style={{
+            zIndex: 1,
+            background: 'transparent'
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+        >
         
         {/* Animated background particles */}
         <div className="absolute inset-0" style={{ zIndex: 3 }}>
@@ -878,20 +883,12 @@ function App() {
       <motion.section
         id="about"
         className="py-20 relative"
-        style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)', position: 'relative' }}
+        style={{ position: 'relative' }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeInUp}
       >
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 80% 20%, rgba(147, 197, 253, 0.2) 0%, transparent 50%),
-                             radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)`,
-          }}></div>
-        </div>
         
         <motion.div className="max-w-7xl mx-auto container relative z-10" variants={zoomIn}>
           <motion.div className="text-center space-y-6 mb-16" variants={slideInLeft}>
@@ -1035,14 +1032,9 @@ function App() {
         id="services" 
         className="py-20 relative"
         style={{
-          backgroundImage: 'url("/bg-3.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          position: 'relative'
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         
         <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
           <motion.div 
@@ -1052,10 +1044,10 @@ function App() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-gray-800">
               Our Services
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-200">
+            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-600">
               Comprehensive financial solutions tailored to your needs
             </motion.p>
           </motion.div>
@@ -1146,7 +1138,8 @@ function App() {
           </div>
         </div>
       </section>
-
+      </div>
+      
       {/* Resources Section */}
       <section 
         className="py-20 relative" 
