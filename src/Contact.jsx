@@ -1,14 +1,74 @@
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail, X } from 'lucide-react'
+import { TextField, Button, Box, Typography, Grid, CircularProgress } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import toast, { Toaster } from 'react-hot-toast'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons'
 import Navigation from './Navigation'
 import Footer from './Footer'
+import { sendContactForm } from './emailService'
+
+// Create Material UI dark theme
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#3b82f6',
+    },
+    secondary: {
+      main: '#64748b',
+    },
+    background: {
+      default: '#1e293b',
+      paper: '#334155',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#cbd5e1',
+    },
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: '#475569',
+            '& fieldset': {
+              borderColor: '#64748b',
+            },
+            '&:hover fieldset': {
+              borderColor: '#3b82f6',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#3b82f6',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            color: '#cbd5e1',
+          },
+          '& .MuiOutlinedInput-input': {
+            color: '#ffffff',
+          },
+        },
+      },
+    },
+  },
+});
 
 function Contact() {
   const navigate = useNavigate()
+  const [showCalendly, setShowCalendly] = useState(false)
+  const [contactForm, setContactForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [isContactSending, setIsContactSending] = useState(false)
 
   // Redirect to home page on refresh
   useEffect(() => {
@@ -31,6 +91,66 @@ function Contact() {
     }
   }, [navigate])
 
+  // Handle contact form input changes
+  const handleContactInputChange = (e) => {
+    const { name, value } = e.target
+    setContactForm(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  // Handle contact form submission
+  const handleContactSubmit = async (e) => {
+    e.preventDefault()
+    
+    // Validate form
+    if (!contactForm.firstName || !contactForm.lastName || !contactForm.email || !contactForm.phone || !contactForm.message) {
+      toast.error('Please fill in all fields', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #ef4444',
+        },
+      })
+      return
+    }
+
+    setIsContactSending(true)
+
+    try {
+      await sendContactForm(contactForm)
+      toast.success('Thank you! Your message has been sent successfully. We will get back to you soon.', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #22c55e',
+        },
+        duration: 5000,
+      })
+      
+      // Reset form
+      setContactForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+    } catch (error) {
+      console.error('Error sending contact form:', error)
+      toast.error('Sorry, there was an error sending your message. Please try again.', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #ef4444',
+        },
+      })
+    } finally {
+      setIsContactSending(false)
+    }
+  }
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -49,7 +169,7 @@ function Contact() {
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Navigation */}
-      <Navigation />
+      <Navigation onScheduleClick={() => setShowCalendly(true)} />
       
       {/* Hero Section */}
       <section 
@@ -187,93 +307,94 @@ function Contact() {
               className="card w-full max-w-2xl"
             >
               <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                      First Name
-                    </label>
-                    <input 
-                      type="text" 
-                      id="firstName" 
-                      className="form-input w-full"
-                      placeholder="John"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                      Last Name
-                    </label>
-                    <input 
-                      type="text" 
-                      id="lastName" 
-                      className="form-input w-full"
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Email Address
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="form-input w-full"
-                    placeholder="john@example.com"
+              <ThemeProvider theme={darkTheme}>
+                <Box component="form" onSubmit={handleContactSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="First Name"
+                        name="firstName"
+                        value={contactForm.firstName}
+                        onChange={handleContactInputChange}
+                        required
+                        variant="outlined"
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Last Name"
+                        name="lastName"
+                        value={contactForm.lastName}
+                        onChange={handleContactInputChange}
+                        required
+                        variant="outlined"
+                      />
+                    </Grid>
+                  </Grid>
+                  
+                  <TextField
+                    fullWidth
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={contactForm.email}
+                    onChange={handleContactInputChange}
+                    required
+                    variant="outlined"
                   />
-                </div>
 
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Phone Number
-                  </label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    className="form-input w-full"
-                    placeholder="0400 000 000"
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
+                    name="phone"
+                    type="tel"
+                    value={contactForm.phone}
+                    onChange={handleContactInputChange}
+                    required
+                    variant="outlined"
                   />
-                </div>
 
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Service Interest
-                  </label>
-                  <select 
-                    id="service" 
-                    className="form-select w-full"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="financial-planning">Financial Planning</option>
-                    <option value="mortgage-broking">Mortgage Broking</option>
-                    <option value="both">Both Services</option>
-                    <option value="consultation">General Consultation</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Message
-                  </label>
-                  <textarea 
-                    id="message" 
+                  <TextField
+                    fullWidth
+                    label="Message"
+                    name="message"
+                    multiline
                     rows={4}
-                    className="form-textarea w-full"
-                    placeholder="Tell us about your financial goals..."
-                  ></textarea>
-                </div>
+                    value={contactForm.message}
+                    onChange={handleContactInputChange}
+                    required
+                    variant="outlined"
+                  />
 
-                <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="btn-primary w-full"
-                >
-                  Send Message
-                </motion.button>
-              </form>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    disabled={isContactSending}
+                    sx={{ 
+                      py: 1.5,
+                      bgcolor: '#3b82f6',
+                      '&:hover': {
+                        bgcolor: '#2563eb'
+                      },
+                      '&:disabled': {
+                        bgcolor: '#6b7280'
+                      }
+                    }}
+                  >
+                    {isContactSending ? (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <CircularProgress size={20} color="inherit" />
+                        Sending...
+                      </Box>
+                    ) : (
+                      'Send Message'
+                    )}
+                  </Button>
+                </Box>
+              </ThemeProvider>
             </motion.div>
           </div>
 
@@ -301,6 +422,60 @@ function Contact() {
           </motion.div>
         </div>
       </section>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9999,
+          background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}
+          onClick={() => setShowCalendly(false)}
+        >
+          <div style={{ position: 'relative', width: '90vw', maxWidth: 600, background: 'var(--bg-primary)', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button onClick={() => setShowCalendly(false)} style={{ position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: '#fff', fontSize: 24, cursor: 'pointer', zIndex: 2 }}>
+              <X size={28} />
+            </button>
+            <iframe
+              src="https://calendly.com/lopeyegtmfinance/20min?hide_gdpr_banner=1"
+              width="100%"
+              height="600"
+              style={{ border: 'none', borderRadius: 12, minHeight: 500 }}
+              allowFullScreen
+              title="Schedule Meeting"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Toast Notifications */}
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#1e293b',
+            color: '#ffffff',
+            border: '1px solid #475569',
+            borderRadius: '8px',
+            fontSize: '14px',
+            maxWidth: '400px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#22c55e',
+              secondary: '#ffffff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#ffffff',
+            },
+          },
+        }}
+      />
 
       {/* Footer */}
       <Footer />

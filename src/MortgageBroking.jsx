@@ -307,7 +307,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
       )}
       
       {/* Navigation */}
-      <Navigation />
+      <Navigation onScheduleClick={() => setShowCalendly(true)} />
       
 
       

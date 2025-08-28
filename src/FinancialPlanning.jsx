@@ -382,7 +382,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
       )}
       
       {/* Navigation */}
-      <Navigation />
+      <Navigation onScheduleClick={() => setShowCalendly(true)} />
       
       {/* Hero Section */}
       <section 

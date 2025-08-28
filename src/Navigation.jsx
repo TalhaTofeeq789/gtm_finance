@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
-function Navigation() {
+function Navigation({ onScheduleClick }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -51,16 +51,14 @@ function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-6">
-            <motion.a 
-              href="https://calendly.com/lopeyegtmfinance/20min?back=1"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button 
+              onClick={() => onScheduleClick && onScheduleClick()}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-primary px-6 py-3"
             >
               Schedule Meeting
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Mobile menu button */}
@@ -91,9 +89,15 @@ function Navigation() {
               
               {/* Mobile actions container */}
               <div className="flex items-center justify-between pt-3 border-t border-gray-600 mt-4">
-                <a href="https://calendly.com/lopeyegtmfinance/20min?back=1" target="_blank" rel="noopener noreferrer" className="btn-primary flex-1 text-center mr-3">
+                <button 
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    onScheduleClick && onScheduleClick()
+                  }} 
+                  className="btn-primary flex-1 text-center mr-3"
+                >
                   Schedule Meeting
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>

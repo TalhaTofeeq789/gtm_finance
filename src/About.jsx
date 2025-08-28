@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Calendar, MapPin, Phone, Mail, X } from 'lucide-react'
+
 import Navigation from './Navigation'
 import Footer from './Footer'
+import { Grid, Card, CardContent, Typography, Avatar, Box } from '@mui/material';
 
 function About() {
   const navigate = useNavigate()
@@ -137,10 +139,10 @@ function About() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Team Section with Material-UI */}
       <section className="py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
@@ -151,74 +153,101 @@ function About() {
               Our Team
             </motion.h2>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            {/* Team Member Card */}
-            <motion.div 
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="flex flex-col items-center text-center bg-[#232946] rounded-2xl shadow-xl p-8 border border-blue-900"
-            >
-              <div className="mb-6">
-                <div className="w-44 h-44 rounded-full overflow-hidden mx-auto shadow-2xl border-4 border-blue-700 bg-slate-800">
-                  <img 
-                    src="/team/picture1.png" 
-                    alt="Lopeye Oyekanmi" 
-                    className="w-full h-full object-cover"
-                    style={{ objectFit: 'cover', objectPosition: 'center center', transform: 'scale(1.1)' }}
-                  />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">Lopeye Oyekanmi</h3>
-              <p className="text-base font-medium text-blue-400">Founder & Principal Adviser</p>
-            </motion.div>
-
-            <motion.div 
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="flex flex-col items-center text-center bg-[#232946] rounded-2xl shadow-xl p-8 border border-blue-900"
-            >
-              <div className="mb-6">
-                <div className="w-44 h-44 rounded-full overflow-hidden mx-auto shadow-2xl border-4 border-blue-700 bg-slate-800">
-                  <img 
-                    src="/team/picture4.jpg" 
-                    alt="Modupe Oyekanmi" 
-                    className="w-full h-full object-cover"
-                    style={{ objectFit: 'cover', objectPosition: 'center center', transform: 'scale(1.1)' }}
-                  />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">Modupe Oyekanmi</h3>
-              <p className="text-base font-medium text-blue-400">Mortgage Broker</p>
-            </motion.div>
-
-            <motion.div 
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col items-center text-center bg-[#232946] rounded-2xl shadow-xl p-8 border border-blue-900"
-            >
-              <div className="mb-6">
-                <div className="w-44 h-44 rounded-full overflow-hidden mx-auto shadow-2xl border-4 border-blue-700 bg-slate-800">
-                  <img 
-                    src="/team/ev.jpg" 
-                    alt="Evelyne Albrecht" 
-                    className="w-full h-full object-cover"
-                    style={{ objectFit: 'cover', objectPosition: 'center center', transform: 'scale(1.1)' }}
-                  />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">Evelyne Albrecht</h3>
-              <p className="text-base font-medium text-blue-400">Compliance Officer</p>
-            </motion.div>
-          </div>
+          <Grid container spacing={6} justifyContent="center" alignItems="stretch" sx={{ maxWidth: '1400px', margin: '0 auto' }}>
+            {/* Team Member 1 */}
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+                viewport={{ once: true }}
+                style={{ height: '100%' }}
+              >
+                <Card sx={{ bgcolor: '#232946', color: 'white', borderRadius: 6, boxShadow: 8, border: 'none', height: 420, minWidth: 340, maxWidth: 420, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
+                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <Box sx={{ position: 'relative', width: 240, height: 240, display: 'inline-block' }}>
+                      <Avatar
+                        src="/team/picture1.png"
+                        alt="Lopeye Oyekanmi"
+                        sx={{ width: 240, height: 240, bgcolor: '#1e293b', boxShadow: 6 }}
+                      />
+                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '10px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
+                    </Box>
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+                    <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: 'white', fontSize: '2rem' }}>
+                      Lopeye Oyekanmi
+                    </Typography>
+                    <Typography variant="subtitle1" sx={{ color: '#60a5fa', fontWeight: 500, fontSize: '1.2rem' }}>
+                      Founder & Principal Adviser
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Grid>
+            {/* Team Member 2 */}
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+                viewport={{ once: true }}
+                style={{ height: '100%' }}
+              >
+                <Card sx={{ bgcolor: '#232946', color: 'white', borderRadius: 6, boxShadow: 8, border: 'none', height: 420, minWidth: 340, maxWidth: 420, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
+                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <Avatar
+                      src="/team/picture4.jpg"
+                      alt="Modupe Oyekanmi"
+                      sx={{ width: 240, height: 240, border: '10px solid #222', bgcolor: '#1e293b', boxShadow: 6 }}
+                    />
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+                    <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: 'white', fontSize: '2rem' }}>
+                      Modupe Oyekanmi
+                    </Typography>
+                    <Typography variant="subtitle1" sx={{ color: '#60a5fa', fontWeight: 500, fontSize: '1.2rem' }}>
+                      Mortgage Broker
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Grid>
+            {/* Team Member 3 */}
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+                viewport={{ once: true }}
+                style={{ height: '100%' }}
+              >
+                <Card sx={{ bgcolor: '#232946', color: 'white', borderRadius: 6, boxShadow: 8, border: 'none', height: 420, minWidth: 340, maxWidth: 420, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
+                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <Box sx={{ position: 'relative', width: 240 , height: 240, display: 'inline-block' }}>
+                      <Avatar
+                        src="/team/ev.png"
+                        alt="Evelyne Albrecht"
+                        sx={{ width: 240, height: 239, bgcolor: '#1e293b', boxShadow: 6 }}
+                      />
+                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '10px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
+                    </Box>
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+                    <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: 'white', fontSize: '2rem' }}>
+                      Evelyne Albrecht
+                    </Typography>
+                    <Typography variant="subtitle1" sx={{ color: '#60a5fa', fontWeight: 500, fontSize: '1.2rem' }}>
+                      Compliance Officer
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Grid>
+          </Grid>
         </div>
       </section>
 
@@ -303,7 +332,7 @@ function About() {
                     <div>
                       <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Email</h4>
                       <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--accent)' }} className="hover:opacity-75">
-                        lopeye@gtmfinance.com.au
+                        admin@gtmfinance.com.au
                       </a>
                     </div>
                   </div>
@@ -313,7 +342,7 @@ function About() {
             
             <div className="map-container">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.2864476394386!2d144.99657921531716!3d-37.76084897976168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2s1%2F3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1629789455165!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.4566391492453!2d145.02429707504692!3d-37.75588973073136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad64440a20c5be1%3A0xba61b672ba0aad86!2s1-3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1756291050617!5m2!1sen!2s"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}

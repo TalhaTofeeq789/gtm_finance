@@ -1451,8 +1451,8 @@ function App() {
               <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
               <ThemeProvider theme={darkTheme}>
                 <Box component="form" onSubmit={handleContactSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
+                  <Grid container spacing={2}>
+                    <Grid sx={{ xs : 12, sm: 6 }}>
                       <TextField
                         fullWidth
                         label="First Name"
@@ -1463,7 +1463,7 @@ function App() {
                         variant="outlined"
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid sx={{ xs : 12, sm: 6 }}>
                       <TextField
                         fullWidth
                         label="Last Name"
