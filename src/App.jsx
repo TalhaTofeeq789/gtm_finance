@@ -2,9 +2,59 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { X, Menu, ArrowRight, Shield, TrendingUp, Users, Calendar, Phone, Mail, MapPin, Instagram, Linkedin, Facebook, Star, CheckCircle, Download, ChevronLeft, ChevronRight } from 'lucide-react'
+import { TextField, Button, Box, Typography, Grid, CircularProgress } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import toast, { Toaster } from 'react-hot-toast'
 import './App.css'
 import Footer from './Footer'
 import { sendDownloadInfo, sendContactForm } from './emailService'
+
+// Create Material UI dark theme
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#3b82f6',
+    },
+    secondary: {
+      main: '#64748b',
+    },
+    background: {
+      default: '#1e293b',
+      paper: '#334155',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#cbd5e1',
+    },
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: '#475569',
+            '& fieldset': {
+              borderColor: '#64748b',
+            },
+            '&:hover fieldset': {
+              borderColor: '#3b82f6',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#3b82f6',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            color: '#cbd5e1',
+          },
+          '& .MuiOutlinedInput-input': {
+            color: '#ffffff',
+          },
+        },
+      },
+    },
+  },
+});
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -88,14 +138,26 @@ function App() {
     
     // Validate form
     if (!downloadForm.name || !downloadForm.phone || !downloadForm.email) {
-      alert('Please fill in all fields')
+      toast.error('Please fill in all fields', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #ef4444',
+        },
+      })
       return
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(downloadForm.email)) {
-      alert('Please enter a valid email address')
+      toast.error('Please enter a valid email address', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #ef4444',
+        },
+      })
       return
     }
 
@@ -118,6 +180,16 @@ function App() {
       setShowDownloadModal(false)
       setDownloadForm({ name: '', phone: '', email: '' })
       
+      // Show success toast
+      toast.success('Download started!', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #22c55e',
+        },
+        duration: 4000,
+      })
+      
       // Open the PDF in a new tab
       window.open(selectedResource.link, '_blank')
       
@@ -127,6 +199,16 @@ function App() {
       // Still allow download even if email fails
       setShowDownloadModal(false)
       setDownloadForm({ name: '', phone: '', email: '' })
+      
+      toast.success('Download started! Check your downloads folder.', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #22c55e',
+        },
+        duration: 4000,
+      })
+      
       window.open(selectedResource.link, '_blank')
     } finally {
       setIsEmailSending(false)
@@ -157,7 +239,13 @@ function App() {
     
     // Validate form
     if (!contactForm.firstName || !contactForm.lastName || !contactForm.email || !contactForm.phone || !contactForm.message) {
-      alert('Please fill in all fields')
+      toast.error('Please fill in all fields', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #ef4444',
+        },
+      })
       return
     }
 
@@ -165,7 +253,14 @@ function App() {
 
     try {
       await sendContactForm(contactForm)
-      alert('Thank you! Your message has been sent successfully. We will get back to you soon.')
+      toast.success('Thank you! Your message has been sent successfully. We will get back to you soon.', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #22c55e',
+        },
+        duration: 5000,
+      })
       
       // Reset form
       setContactForm({
@@ -177,7 +272,13 @@ function App() {
       })
     } catch (error) {
       console.error('Error sending contact form:', error)
-      alert('Sorry, there was an error sending your message. Please try again.')
+      toast.error('Sorry, there was an error sending your message. Please try again.', {
+        style: {
+          background: '#1e293b',
+          color: '#ffffff',
+          border: '1px solid #ef4444',
+        },
+      })
     } finally {
       setIsContactSending(false)
     }
@@ -1348,109 +1449,94 @@ function App() {
               className="card w-full max-w-2xl"
             >
               <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
-              <form onSubmit={handleContactSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="contactFirstName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                      First Name *
-                    </label>
-                    <input 
-                      type="text" 
-                      id="contactFirstName" 
-                      name="firstName"
-                      value={contactForm.firstName}
-                      onChange={handleContactInputChange}
-                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
-                      placeholder="John"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="contactLastName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                      Last Name *
-                    </label>
-                    <input 
-                      type="text" 
-                      id="contactLastName" 
-                      name="lastName"
-                      value={contactForm.lastName}
-                      onChange={handleContactInputChange}
-                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
-                      placeholder="Doe"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="contactEmailAddress" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Email Address *
-                  </label>
-                  <input 
-                    type="email" 
-                    id="contactEmailAddress" 
+              <ThemeProvider theme={darkTheme}>
+                <Box component="form" onSubmit={handleContactSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="First Name"
+                        name="firstName"
+                        value={contactForm.firstName}
+                        onChange={handleContactInputChange}
+                        required
+                        variant="outlined"
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        label="Last Name"
+                        name="lastName"
+                        value={contactForm.lastName}
+                        onChange={handleContactInputChange}
+                        required
+                        variant="outlined"
+                      />
+                    </Grid>
+                  </Grid>
+                  
+                  <TextField
+                    fullWidth
+                    label="Email Address"
                     name="email"
+                    type="email"
                     value={contactForm.email}
                     onChange={handleContactInputChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
-                    placeholder="john@example.com"
                     required
+                    variant="outlined"
                   />
-                </div>
 
-                <div>
-                  <label htmlFor="contactPhoneNumber" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Phone Number *
-                  </label>
-                  <input 
-                    type="tel" 
-                    id="contactPhoneNumber" 
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
                     name="phone"
+                    type="tel"
                     value={contactForm.phone}
                     onChange={handleContactInputChange}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
-                    placeholder="0400 000 000"
                     required
+                    variant="outlined"
                   />
-                </div>
 
-                <div>
-                  <label htmlFor="contactMessageText" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Message *
-                  </label>
-                  <textarea 
-                    id="contactMessageText" 
+                  <TextField
+                    fullWidth
+                    label="Message"
                     name="message"
+                    multiline
+                    rows={4}
                     value={contactForm.message}
                     onChange={handleContactInputChange}
-                    rows={4}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none resize-none"
-                    placeholder="Tell us about your financial goals..."
                     required
-                  ></textarea>
-                </div>
+                    variant="outlined"
+                  />
 
-                <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={isContactSending}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2 ${
-                    isContactSending 
-                      ? 'bg-gray-600 cursor-not-allowed text-white' 
-                      : 'btn-primary'
-                  }`}
-                >
-                  {isContactSending ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      Sending...
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
-                </motion.button>
-              </form>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    disabled={isContactSending}
+                    sx={{ 
+                      py: 1.5,
+                      bgcolor: '#3b82f6',
+                      '&:hover': {
+                        bgcolor: '#2563eb'
+                      },
+                      '&:disabled': {
+                        bgcolor: '#6b7280'
+                      }
+                    }}
+                  >
+                    {isContactSending ? (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <CircularProgress size={20} color="inherit" />
+                        Sending...
+                      </Box>
+                    ) : (
+                      'Send Message'
+                    )}
+                  </Button>
+                </Box>
+              </ThemeProvider>
             </motion.div>
           </div>
         </div>
@@ -1525,6 +1611,34 @@ function App() {
 
       {/* Footer */}
       <Footer />
+      
+      {/* Toast Notifications */}
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#1e293b',
+            color: '#ffffff',
+            border: '1px solid #475569',
+            borderRadius: '8px',
+            fontSize: '14px',
+            maxWidth: '400px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#22c55e',
+              secondary: '#ffffff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#ffffff',
+            },
+          },
+        }}
+      />
     </div>
   )
 }
