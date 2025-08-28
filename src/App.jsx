@@ -106,9 +106,6 @@ function App() {
       
       console.log('Download notification email sent successfully')
       
-      // Show success message
-      alert('Thank you! Your download will start shortly. We have been notified of your download.')
-      
       // Close modal and reset form
       setShowDownloadModal(false)
       setDownloadForm({ name: '', phone: '', email: '' })
@@ -118,7 +115,6 @@ function App() {
       
     } catch (error) {
       console.error('Failed to send email notification:', error)
-      alert('Download started successfully! Note: Email notification may have failed, but your download is proceeding.')
       
       // Still allow download even if email fails
       setShowDownloadModal(false)
