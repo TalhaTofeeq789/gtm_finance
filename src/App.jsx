@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { X, Menu, ArrowRight, Shield, TrendingUp, Users, Calendar, Phone, Mail, MapPin, Instagram, Linkedin, Facebook, Star, CheckCircle, Download, ChevronLeft, ChevronRight } from 'lucide-react'
 import './App.css'
 import Footer from './Footer'
+import { sendDownloadInfo } from './emailService'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -104,10 +105,17 @@ function App() {
     }
 
     try {
-      // Send email notification (placeholder for actual email service)
-      await sendDownloadNotificationEmail(emailData)
+      // Send email notification using EmailJS
+      await sendDownloadInfo(
+        {
+          name: downloadForm.name,
+          email: downloadForm.email,
+          phone: downloadForm.phone
+        },
+        selectedResource.title
+      )
       
-      console.log('Download form data sent via email:', emailData)
+      console.log('Download notification email sent successfully')
       
       // Close modal and reset form
       setShowDownloadModal(false)
