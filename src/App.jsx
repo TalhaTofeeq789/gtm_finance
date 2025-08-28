@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { X, Menu, ArrowRight, Shield, TrendingUp, Users, Calendar, Phone, Mail, MapPin, Instagram, Linkedin, Facebook, Star, CheckCircle, Download, ChevronLeft, ChevronRight } from 'lucide-react'
 import './App.css'
 import Footer from './Footer'
-import { sendDownloadInfo } from './emailService'
+import { sendDownloadInfo, sendContactForm } from './emailService'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -22,6 +22,14 @@ function App() {
     phone: '',
     email: ''
   })
+  const [contactForm, setContactForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [isContactSending, setIsContactSending] = useState(false)
 
   const fullText = "Take Control of Your "
   const secondLineText = "Financial Future"
@@ -132,6 +140,47 @@ function App() {
       ...prev,
       [name]: value
     }))
+  }
+
+  // Handle contact form input changes
+  const handleContactInputChange = (e) => {
+    const { name, value } = e.target
+    setContactForm(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  // Handle contact form submission
+  const handleContactSubmit = async (e) => {
+    e.preventDefault()
+    
+    // Validate form
+    if (!contactForm.firstName || !contactForm.lastName || !contactForm.email || !contactForm.phone || !contactForm.message) {
+      alert('Please fill in all fields')
+      return
+    }
+
+    setIsContactSending(true)
+
+    try {
+      await sendContactForm(contactForm)
+      alert('Thank you! Your message has been sent successfully. We will get back to you soon.')
+      
+      // Reset form
+      setContactForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+    } catch (error) {
+      console.error('Error sending contact form:', error)
+      alert('Sorry, there was an error sending your message. Please try again.')
+    } finally {
+      setIsContactSending(false)
+    }
   }
 
   // Animation variants for different entry effects
@@ -423,7 +472,7 @@ function App() {
                   {isEmailSending ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      Sending...
+                      Downloading...
                     </>
                   ) : (
                     <>
@@ -1299,81 +1348,85 @@ function App() {
               className="card w-full max-w-2xl"
             >
               <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
-              <form className="space-y-6">
+              <form onSubmit={handleContactSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                      First Name
+                    <label htmlFor="contactFirstName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
+                      First Name *
                     </label>
                     <input 
                       type="text" 
-                      id="firstName" 
-                      className="form-input w-full"
+                      id="contactFirstName" 
+                      name="firstName"
+                      value={contactForm.firstName}
+                      onChange={handleContactInputChange}
+                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
                       placeholder="John"
+                      required
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                      Last Name
+                    <label htmlFor="contactLastName" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
+                      Last Name *
                     </label>
                     <input 
                       type="text" 
-                      id="lastName" 
-                      className="form-input w-full"
+                      id="contactLastName" 
+                      name="lastName"
+                      value={contactForm.lastName}
+                      onChange={handleContactInputChange}
+                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
                       placeholder="Doe"
+                      required
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Email Address
+                  <label htmlFor="contactEmailAddress" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
+                    Email Address *
                   </label>
                   <input 
                     type="email" 
-                    id="email" 
-                    className="form-input w-full"
+                    id="contactEmailAddress" 
+                    name="email"
+                    value={contactForm.email}
+                    onChange={handleContactInputChange}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
                     placeholder="john@example.com"
+                    required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Phone Number
+                  <label htmlFor="contactPhoneNumber" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
+                    Phone Number *
                   </label>
                   <input 
                     type="tel" 
-                    id="phone" 
-                    className="form-input w-full"
+                    id="contactPhoneNumber" 
+                    name="phone"
+                    value={contactForm.phone}
+                    onChange={handleContactInputChange}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none"
                     placeholder="0400 000 000"
+                    required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Service Interest
-                  </label>
-                  <select 
-                    id="service" 
-                    className="form-select w-full"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="financial-planning">Financial Planning</option>
-                    <option value="mortgage-broking">Mortgage Broking</option>
-                    <option value="both">Both Services</option>
-                    <option value="consultation">General Consultation</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Message
+                  <label htmlFor="contactMessageText" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
+                    Message *
                   </label>
                   <textarea 
-                    id="message" 
+                    id="contactMessageText" 
+                    name="message"
+                    value={contactForm.message}
+                    onChange={handleContactInputChange}
                     rows={4}
-                    className="form-textarea w-full"
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none resize-none"
                     placeholder="Tell us about your financial goals..."
+                    required
                   ></textarea>
                 </div>
 
@@ -1381,9 +1434,21 @@ function App() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="btn-primary w-full"
+                  disabled={isContactSending}
+                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2 ${
+                    isContactSending 
+                      ? 'bg-gray-600 cursor-not-allowed text-white' 
+                      : 'btn-primary'
+                  }`}
                 >
-                  Send Message
+                  {isContactSending ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </motion.button>
               </form>
             </motion.div>

@@ -38,3 +38,34 @@ export function sendDownloadInfo(userInfo, bookName) {
 			throw error;
 		});
 }
+
+/**
+ * Sends contact form submission email to talhatofeeq2003@gmail.com
+ * @param {Object} contactInfo - Contains firstName, lastName, email, phone, and message
+ * @returns {Promise}
+ */
+export function sendContactForm(contactInfo) {
+	// Initialize EmailJS with public key
+	emailjs.init(USER_ID);
+	
+	const templateParams = {
+		to_email: 'talhatofeeq2003@gmail.com',
+		user_name: `${contactInfo.firstName} ${contactInfo.lastName}`,
+		user_email: contactInfo.email || 'N/A',
+		user_phone: contactInfo.phone || 'N/A',
+		user_message: contactInfo.message || 'No message provided',
+		contact_date: new Date().toLocaleDateString(),
+		contact_time: new Date().toLocaleTimeString(),
+		message: `Hello,\n\nYou have received a new contact form submission from your GTM Finance website.\n\nContact Details:\n- Name: ${contactInfo.firstName} ${contactInfo.lastName}\n- Email: ${contactInfo.email}\n- Phone: ${contactInfo.phone}\n- Message: ${contactInfo.message}\n- Submitted Date: ${new Date().toLocaleDateString()}\n- Submitted Time: ${new Date().toLocaleTimeString()}\n\nPlease follow up with this potential client promptly.\n\nBest regards,\nGTM Finance Website`
+	};
+
+	return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+		.then((response) => {
+			console.log('Contact form email sent successfully:', response.status, response.text);
+			return response;
+		})
+		.catch((error) => {
+			console.error('Contact form email sending failed:', error);
+			throw error;
+		});
+}
