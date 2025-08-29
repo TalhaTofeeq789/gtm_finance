@@ -3,9 +3,9 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS credentials from environment variables
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const USER_ID = import.meta.env.VITE_EMAILJS_USER_ID; 
+const SERVICE_ID = service_szljn19;
+const TEMPLATE_ID = template_7tgjdxm;
+const USER_ID = qyg87wpq8Y7xJzeDI; 
 
 /**
  * @param {Object} userInfo - Contains name, email, and phone
