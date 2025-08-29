@@ -7,11 +7,11 @@ function Footer() {
   return (
     <footer 
       className="pt-16" 
-      style={{ backgroundColor: '#000000', color: 'var(--text-secondary)' }}
+      style={{ backgroundColor: '#374151', color: '#d1d5db' }}
     >
       <div className="max-w-7xl mx-auto container">
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-500 pb-12">
           
           {/* Logo + Social */}
           <div className="space-y-5">
@@ -129,11 +129,11 @@ function Footer() {
           </div>
 
           {/* Copyright and Credits */}
-          <div className="w-full border-t border-gray-700 pt-6 pb-4 text-center mb-6">
-            <p className="text-sm font-medium tracking-wide text-gray-400 mb-2">
+          <div className="w-full border-t border-gray-500 pt-6 pb-4 text-center mb-6">
+            <p className="text-sm font-medium tracking-wide text-gray-300 mb-2">
               Copyright © 2025 GTM Finance. All rights reserved. ABN 5725 0815 625.
             </p>
-            <p className="text-base font-medium text-white mb-3">
+            <p className="text-base font-medium text-gray-200 mb-3">
               made by <a href="https://aicexpert.com/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors underline">AICE XPERT</a>.
             </p>
           </div>

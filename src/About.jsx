@@ -67,13 +67,9 @@ function About() {
       <section 
         className="relative min-h-screen flex items-center justify-center"
         style={{
-          backgroundImage: 'url("/hero-bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)'
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -81,17 +77,21 @@ function About() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-lg" style={{ color: '#1e40af' }}>
               LIVE FOR TODAY AND FOR TOMORROW
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#1e3a8a' }}>
               We can give you the best of both worlds.
             </p>
             <motion.button 
               onClick={scrollToAboutSection}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              style={{
+                background: 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
+                color: '#ffffff'
+              }}
             >
               Learn More
             </motion.button>
@@ -100,7 +100,7 @@ function About() {
       </section>
 
       {/* About Us Content Section */}
-      <section id="about-section" className="py-20" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+      <section id="about-section" className="py-20" style={{ backgroundColor: '#f0f9ff' }}>
         <div className="w-full max-w-4xl mx-auto px-4">
           <motion.div 
             variants={staggerContainer}
@@ -111,28 +111,33 @@ function About() {
           >
             <motion.h2 
               variants={fadeInUp} 
-              className="text-4xl font-extrabold mb-4 text-blue-400 tracking-tight border-b-4 border-blue-400 pb-2 pl-1"
-              style={{ width: 'fit-content' }}
+              className="text-4xl font-extrabold mb-4 tracking-tight border-b-4 pb-2 pl-1"
+              style={{ 
+                width: 'fit-content',
+                color: '#1e40af',
+                borderColor: '#1e40af'
+              }}
             >
               About Us
             </motion.h2>
             <motion.div 
               variants={fadeInUp} 
-              className="space-y-12 text-lg leading-relaxed text-gray-300 mt-6 pl-1"
+              className="space-y-12 text-lg leading-relaxed mt-6 pl-1"
+              style={{ color: '#374151' }}
             >
               <p>
                 You've worked hard to build a successful career and a lifestyle you're proud of. You earn good money, and you're ready to take the next step in achieving your financial goals—without compromising the lifestyle you value. After all, isn't that what it's all about?
               </p>
               <br />
               <p>
-                At <span className="text-blue-400 font-semibold">GTM Finance</span>, we specialize in turning your ambitious goals into a clear, actionable financial plan that aligns with your life today and your aspirations for the future.
+                At <span className="font-semibold" style={{ color: '#1e40af' }}>GTM Finance</span>, we specialize in turning your ambitious goals into a clear, actionable financial plan that aligns with your life today and your aspirations for the future.
               </p>
               <p>
                 Whether you're looking to renovate or purchase a holiday home, start investing, retire early, reduce your tax burden, launch a business, or indulge in multiple unforgettable international holidays each year, we're here to make it happen.
               </p>
               <br />
               <p>
-                At <span className="text-blue-400 font-semibold">GTM Finance</span>, we pride ourselves on being personal and proactive. Our expert team will guide you every step of the way, leveraging our proven strategies to help you create the future you've envisioned. Let's build the life you deserve—together.
+                At <span className="font-semibold" style={{ color: '#1e40af' }}>GTM Finance</span>, we pride ourselves on being personal and proactive. Our expert team will guide you every step of the way, leveraging our proven strategies to help you create the future you've envisioned. Let's build the life you deserve—together.
               </p>
             </motion.div>
           </motion.div>
@@ -140,7 +145,7 @@ function About() {
       </section>
 
       {/* Team Section with Material-UI */}
-      <section className="py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="py-20" style={{ backgroundColor: '#f0f9ff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
@@ -149,7 +154,7 @@ function About() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               Our Team
             </motion.h2>
           </motion.div>
@@ -164,7 +169,21 @@ function About() {
                 viewport={{ once: true }}
                 style={{ height: '100%' }}
               >
-                <Card sx={{ bgcolor: '#232946', color: 'white', borderRadius: 6, boxShadow: 8, border: 'none', height: 420, minWidth: 340, maxWidth: 420, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
+                <Card sx={{ 
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', 
+                  color: 'white', 
+                  borderRadius: 6, 
+                  boxShadow: 8, 
+                  border: 'none', 
+                  height: 420, 
+                  minWidth: 340, 
+                  maxWidth: 420, 
+                  margin: '0 auto', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  p: 4 
+                }}>
                   <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
                     <Box sx={{ position: 'relative', width: 240, height: 240, display: 'inline-block' }}>
                       <Avatar
@@ -196,7 +215,21 @@ function About() {
                 viewport={{ once: true }}
                 style={{ height: '100%' }}
               >
-                <Card sx={{ bgcolor: '#232946', color: 'white', borderRadius: 6, boxShadow: 8, border: 'none', height: 420, minWidth: 340, maxWidth: 420, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
+                <Card sx={{ 
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', 
+                  color: 'white', 
+                  borderRadius: 6, 
+                  boxShadow: 8, 
+                  border: 'none', 
+                  height: 420, 
+                  minWidth: 340, 
+                  maxWidth: 420, 
+                  margin: '0 auto', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  p: 4 
+                }}>
                   <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
                     <Avatar
                       src="/team/picture4.jpg"
@@ -225,7 +258,21 @@ function About() {
                 viewport={{ once: true }}
                 style={{ height: '100%' }}
               >
-                <Card sx={{ bgcolor: '#232946', color: 'white', borderRadius: 6, boxShadow: 8, border: 'none', height: 420, minWidth: 340, maxWidth: 420, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
+                <Card sx={{ 
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', 
+                  color: 'white', 
+                  borderRadius: 6, 
+                  boxShadow: 8, 
+                  border: 'none', 
+                  height: 420, 
+                  minWidth: 340, 
+                  maxWidth: 420, 
+                  margin: '0 auto', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  p: 4 
+                }}>
                   <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
                     <Box sx={{ position: 'relative', width: 240 , height: 240, display: 'inline-block' }}>
                       <Avatar

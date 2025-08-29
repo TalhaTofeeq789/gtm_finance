@@ -279,7 +279,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
 
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%)' }}>
       {/* Calendly Modal */}
       {showCalendly && (
         <div style={{
@@ -315,15 +315,9 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
       <section 
         className="relative min-h-screen flex items-center justify-center"
         style={{
-          backgroundImage: 'url("/hero-bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          background: 'linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%)'
         }}
-      >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40" style={{ zIndex: 2 }}></div>
-        
+      >        
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -331,10 +325,10 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: '#1e40af' }}>
               MORTGAGE BROKING
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#374151' }}>
               Expert mortgage advice and competitive lending solutions for your property goals.
             </p>
             <motion.div
@@ -347,7 +341,8 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                 onClick={() => setShowCalendly(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                className="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
               >
                 <Calendar className="w-5 h-5" />
                 <span>Schedule a Meeting</span>
@@ -358,7 +353,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
       </section>
 
       {/* Introduction Section */}
-      <section id="services-section" className="py-20 bg-slate-800">
+      <section id="services-section" className="py-20" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -367,10 +362,10 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
             transition={{ duration: 0.8 }}
             className="text-center space-y-8"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">
+            <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               EXPLORE OUR MORTGAGE BROKING SERVICES
             </h2>
-            <p className="text-xl leading-relaxed text-gray-300 max-w-4xl mx-auto">
+            <p className="text-xl leading-relaxed max-w-4xl mx-auto" style={{ color: '#374151' }}>
               Schedule a Session today! We provide comprehensive mortgage solutions 
               for both residential and business needs.
             </p>
@@ -382,7 +377,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
         // Services Grid View
         <>
           {/* Residential Services Section */}
-          <section className="py-16 bg-slate-900">
+          <section className="py-16" style={{ backgroundColor: '#f8fafc' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div 
                 initial={{ opacity: 0, y: 50 }}
@@ -391,7 +386,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                 transition={{ duration: 0.8 }}
                 className="text-center space-y-4 mb-12"
               >
-                <h3 className="text-2xl lg:text-3xl font-bold text-white">
+                <h3 className="text-2xl lg:text-3xl font-bold" style={{ color: '#1e40af' }}>
                   RESIDENTIAL
                 </h3>
               </motion.div>
@@ -407,19 +402,25 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                    className="p-6 rounded-xl border transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                    style={{ 
+                      background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%)', 
+                      borderColor: '#e5e7eb',
+                      color: 'white',
+                      boxShadow: '0 4px 20px rgba(6, 182, 212, 0.3)'
+                    }}
                     onClick={() => handleServiceClick(service)}
                   >
                     <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="p-3 bg-blue-600 rounded-full">
+                      <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)' }}>
                         <service.icon className="w-6 h-6 text-white" />
                       </div>
                       <h4 className="text-lg font-semibold text-white leading-tight">{service.title}</h4>
-                      <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
+                      <p className="text-sm leading-relaxed text-white opacity-90">{service.description}</p>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-auto text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300 text-sm"
+                        className="mt-auto font-semibold transition-colors duration-300 text-sm text-white"
                       >
                         Learn More →
                       </motion.button>
@@ -431,7 +432,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
           </section>
 
           {/* Business Services Section */}
-          <section className="py-16 bg-slate-800">
+          <section className="py-16" style={{ backgroundColor: '#ffffff' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div 
                 initial={{ opacity: 0, y: 50 }}
@@ -440,7 +441,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                 transition={{ duration: 0.8 }}
                 className="text-center space-y-4 mb-12"
               >
-                <h3 className="text-2xl lg:text-3xl font-bold text-white">
+                <h3 className="text-2xl lg:text-3xl font-bold" style={{ color: '#1e40af' }}>
                   BUSINESS
                 </h3>
               </motion.div>
@@ -456,19 +457,25 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-slate-900 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                    className="p-6 rounded-xl border transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                    style={{ 
+                      background: 'linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%)', 
+                      borderColor: '#e5e7eb',
+                      color: 'white',
+                      boxShadow: '0 4px 20px rgba(16, 185, 129, 0.3)'
+                    }}
                     onClick={() => handleServiceClick(service)}
                   >
                     <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="p-3 bg-blue-600 rounded-full">
+                      <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)' }}>
                         <service.icon className="w-6 h-6 text-white" />
                       </div>
                       <h4 className="text-sm font-semibold text-white leading-tight">{service.title}</h4>
-                      <p className="text-gray-300 text-xs leading-relaxed">{service.description}</p>
+                      <p className="text-xs leading-relaxed text-white opacity-90">{service.description}</p>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-auto text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300 text-xs"
+                        className="mt-auto font-semibold transition-colors duration-300 text-xs text-white"
                       >
                         Explore →
                       </motion.button>
@@ -481,7 +488,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
         </>
       ) : (
         // Service Detail View
-        <section className="py-20 bg-slate-900">
+        <section className="py-20" style={{ backgroundColor: '#ffffff' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, x: 100 }}
@@ -494,41 +501,45 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                 onClick={handleBackClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors duration-300"
+                className="flex items-center space-x-2 mb-8 transition-colors duration-300 px-4 py-2 rounded-lg font-semibold"
+                style={{ 
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', 
+                  color: 'white' 
+                }}
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back to Services</span>
               </motion.button>
 
               {/* Service Detail Content */}
-              <div className="bg-slate-800 rounded-xl p-8 border border-slate-700">
+              <div className="rounded-xl p-8 border" style={{ backgroundColor: '#f8fafc', borderColor: '#e5e7eb' }}>
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="p-4 bg-blue-600 rounded-full">
+                  <div className="p-4 rounded-full" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
                     <selectedService.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h1 className="text-3xl lg:text-4xl font-bold text-white">
+                  <h1 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
                     {selectedService.title}
                   </h1>
                 </div>
 
-                <h2 className="text-2xl font-semibold text-white mb-6">
+                <h2 className="text-2xl font-semibold mb-6" style={{ color: '#1e40af' }}>
                   {selectedService.detailedContent.title}
                 </h2>
 
                 <div className="prose prose-lg max-w-none">
                   {selectedService.detailedContent.content.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-gray-300 leading-relaxed mb-4">
+                    <p key={index} className="leading-relaxed mb-4" style={{ color: '#374151' }}>
                       {paragraph}
                     </p>
                   ))}
                 </div>
 
                 {/* Book Meeting Button */}
-                <div className="mt-8 pt-6 border-t border-slate-700">
-                  <h3 className="text-xl font-semibold text-white mb-4">
+                <div className="mt-8 pt-6 border-t" style={{ borderColor: '#e5e7eb' }}>
+                  <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e40af' }}>
                     Book a Complimentary Meeting
                   </h3>
-                  <p className="text-gray-300 mb-6">
+                  <p className="mb-6" style={{ color: '#374151' }}>
                     {selectedService.title === "Home Loans" && 
                       "If you're looking to buy your first home or expand your property portfolio, schedule a complimentary consultation today to explore your loan options."
                     }
@@ -564,7 +575,8 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                     onClick={() => setShowCalendly(true)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center space-x-2"
+                    className="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center space-x-2"
+                    style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
                   >
                     <Calendar className="w-5 h-5" />
                     <span>Schedule a Meeting</span>
@@ -578,7 +590,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
 
       {/* Call to Action Section - Only show when no service is selected */}
       {!selectedService && (
-        <section className="py-20 bg-slate-900">
+        <section className="py-20" style={{ backgroundColor: '#f8fafc' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
@@ -587,10 +599,10 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-white">
+              <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
                 Schedule a Consultation Today!
               </h2>
-              <p className="text-xl leading-relaxed text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#374151' }}>
                 Book a No-Obligation 30 Minute Consultation with GTM Finance and find the 
                 perfect mortgage solution for your needs.
               </p>
@@ -601,7 +613,8 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                   onClick={() => setShowCalendly(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                  className="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                  style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
                 >
                   <Calendar className="w-5 h-5" />
                   <span>Schedule a Meeting</span>

@@ -11,23 +11,23 @@ import Navigation from './Navigation'
 import Footer from './Footer'
 import { sendContactForm } from './emailService'
 
-// Create Material UI dark theme
-const darkTheme = createTheme({
+// Create Material UI light theme
+const lightTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#3b82f6',
+      main: '#1e40af',
     },
     secondary: {
-      main: '#64748b',
+      main: '#374151',
     },
     background: {
-      default: '#1e293b',
-      paper: '#334155',
+      default: '#ffffff',
+      paper: '#f8fafc',
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#cbd5e1',
+      primary: '#374151',
+      secondary: '#6b7280',
     },
   },
   components: {
@@ -35,22 +35,22 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-root': {
-            backgroundColor: '#475569',
+            backgroundColor: '#ffffff',
             '& fieldset': {
-              borderColor: '#64748b',
+              borderColor: '#e5e7eb',
             },
             '&:hover fieldset': {
-              borderColor: '#3b82f6',
+              borderColor: '#1e40af',
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#3b82f6',
+              borderColor: '#1e40af',
             },
           },
           '& .MuiInputLabel-root': {
-            color: '#cbd5e1',
+            color: '#6b7280',
           },
           '& .MuiOutlinedInput-input': {
-            color: '#ffffff',
+            color: '#374151',
           },
         },
       },
@@ -167,7 +167,7 @@ function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%)' }}>
       {/* Navigation */}
       <Navigation onScheduleClick={() => setShowCalendly(true)} />
       
@@ -175,15 +175,9 @@ function Contact() {
       <section 
         className="relative min-h-screen flex items-center justify-center"
         style={{
-          backgroundImage: 'url("/hero-bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          background: 'linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%)'
         }}
-      >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40" style={{ zIndex: 2 }}></div>
-        
+      >        
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -191,10 +185,10 @@ function Contact() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: '#1e40af' }}>
               CONTACT US TODAY
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#374151' }}>
               We can give you the best of both worlds.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -205,7 +199,8 @@ function Contact() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
               >
                 Schedule a Meeting
               </motion.a>
@@ -218,15 +213,9 @@ function Contact() {
       <section 
         className="py-20 relative"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundColor: '#ffffff'
         }}
-      >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-        
+      >        
         <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
           <motion.div 
             variants={staggerContainer}
@@ -235,10 +224,10 @@ function Contact() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               Get In Touch
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-200">
+            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#374151' }}>
               Ready to take control of your financial future? Contact us today for a free consultation.
             </motion.p>
           </motion.div>
@@ -252,12 +241,12 @@ function Contact() {
               viewport={{ once: true }}
               className="text-center space-y-4"
             >
-              <div className="p-4 rounded-full inline-block" style={{ backgroundColor: 'var(--accent)' }}>
+              <div className="p-4 rounded-full inline-block" style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}>
                 <MapPin className="text-white" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Visit Our Office</h3>
-                <p style={{ color: 'var(--text-secondary)' }}>1-3 Theobald Street<br />Thornbury, VIC 3071</p>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: '#1e40af' }}>Visit Our Office</h3>
+                <p style={{ color: '#374151' }}>1-3 Theobald Street<br />Thornbury, VIC 3071</p>
               </div>
             </motion.div>
 
@@ -269,12 +258,12 @@ function Contact() {
               transition={{ delay: 0.1 }}
               className="text-center space-y-4"
             >
-              <div className="p-4 rounded-full inline-block" style={{ backgroundColor: 'var(--success)' }}>
+              <div className="p-4 rounded-full inline-block" style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)' }}>
                 <Phone className="text-white" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Call Us</h3>
-                <a href="tel:1300486346" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">1300 486 346</a>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: '#1e40af' }}>Call Us</h3>
+                <a href="tel:1300486346" style={{ color: '#374151' }} className="hover:opacity-75">1300 486 346</a>
               </div>
             </motion.div>
 
@@ -286,12 +275,12 @@ function Contact() {
               transition={{ delay: 0.2 }}
               className="text-center space-y-4"
             >
-              <div className="p-4 rounded-full inline-block" style={{ backgroundColor: '#a855f7' }}>
+              <div className="p-4 rounded-full inline-block" style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)' }}>
                 <Mail className="text-white" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Email Us</h3>
-                <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--text-secondary)' }} className="hover:opacity-75">admin@gtmfinance.com.au</a>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: '#1e40af' }}>Email Us</h3>
+                <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: '#374151' }} className="hover:opacity-75">admin@gtmfinance.com.au</a>
               </div>
             </motion.div>
           </div>
@@ -304,10 +293,15 @@ function Contact() {
               whileInView="animate"
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="card w-full max-w-2xl"
+              className="w-full max-w-2xl p-8 rounded-xl border"
+              style={{ 
+                backgroundColor: '#f8fafc', 
+                borderColor: '#e5e7eb',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
+              }}
             >
-              <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
-              <ThemeProvider theme={darkTheme}>
+              <h3 className="text-2xl font-bold mb-6" style={{ color: '#1e40af' }}>Send us a Message</h3>
+              <ThemeProvider theme={lightTheme}>
                 <Box component="form" onSubmit={handleContactSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
@@ -375,9 +369,9 @@ function Contact() {
                     disabled={isContactSending}
                     sx={{ 
                       py: 1.5,
-                      bgcolor: '#3b82f6',
+                      background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
                       '&:hover': {
-                        bgcolor: '#2563eb'
+                        background: 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)'
                       },
                       '&:disabled': {
                         bgcolor: '#6b7280'
@@ -407,15 +401,39 @@ function Contact() {
             transition={{ delay: 0.4 }}
             className="text-center mt-16"
           >
-            <h3 className="text-lg font-semibold m-6" style={{ color: 'var(--text-primary)' }}>Follow Us</h3>
+            <h3 className="text-lg font-semibold m-6" style={{ color: '#1e40af' }}>Follow Us</h3>
             <div className="flex justify-center space-x-6">
-              <a href="https://www.instagram.com/gtmfinance/" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+              <a href="https://www.instagram.com/gtmfinance/" className="social-link" style={{ 
+                backgroundColor: '#f8fafc', 
+                border: '2px solid #e5e7eb',
+                color: '#374151',
+                padding: '12px',
+                borderRadius: '12px',
+                display: 'inline-block',
+                transition: 'all 0.3s ease'
+              }}>
                 <FontAwesomeIcon icon={faInstagram} size="lg" />
               </a>
-              <a href="https://www.linkedin.com/company/gtm-finance" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+              <a href="https://www.linkedin.com/company/gtm-finance" className="social-link" style={{ 
+                backgroundColor: '#f8fafc', 
+                border: '2px solid #e5e7eb',
+                color: '#374151',
+                padding: '12px',
+                borderRadius: '12px',
+                display: 'inline-block',
+                transition: 'all 0.3s ease'
+              }}>
                 <FontAwesomeIcon icon={faLinkedin} size="lg" />
               </a>
-              <a href="https://m.facebook.com/profile.php?id=435081580362637" className="social-link" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
+              <a href="https://m.facebook.com/profile.php?id=435081580362637" className="social-link" style={{ 
+                backgroundColor: '#f8fafc', 
+                border: '2px solid #e5e7eb',
+                color: '#374151',
+                padding: '12px',
+                borderRadius: '12px',
+                display: 'inline-block',
+                transition: 'all 0.3s ease'
+              }}>
                 <FontAwesomeIcon icon={faFacebook} size="lg" />
               </a>
             </div>

@@ -1,47 +1,30 @@
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* CSS Variables for Theme */
+/* CSS Variables for Light Theme */
 :root {
-  /* Light theme colors - Bright & Modern */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
+  /* Light theme colors - Client's Blue & White Theme */
+  --bg-primary: #EFF7F6;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8fffe;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-tertiary: #718096;
   --border: #e2e8f0;
   --card-bg: #ffffff;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-light: #dbeafe;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
-}
-
-[data-theme="dark"] {
-  /* Dark theme colors - Sophisticated Dark with Purple/Blue Accents */
-  --bg-primary: #0a0e1a;
-  --bg-secondary: #151a2e;
-  --bg-tertiary: #1f2937;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-tertiary: #9ca3af;
-  --border: #374151;
-  --card-bg: #1f2937;
-  --accent: #8b5cf6;
-  --accent-hover: #7c3aed;
-  --accent-light: #2e1065;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
+  --accent: #8ECAE6;
+  --accent-hover: #75b8d9;
+  --accent-light: rgba(142, 202, 230, 0.15);
+  --success: #38a169;
+  --warning: #d69e2e;
+  --error: #e53e3e;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 body {
@@ -50,11 +33,6 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Force all elements to use light theme - OVERRIDE EVERYTHING */
-* {
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Force cards to be light colored */

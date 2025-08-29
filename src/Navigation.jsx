@@ -20,10 +20,10 @@ function Navigation({ onScheduleClick }) {
     <nav 
       className="fixed w-full z-50 transition-all duration-300"
       style={{ 
-        backgroundColor: isScrolled ? 'rgba(26, 32, 44, 0.95)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-        borderBottom: isScrolled ? '1px solid #4a5568' : 'none',
-        boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.3)' : 'none'
+        backgroundColor: isScrolled ? 'rgba(248, 250, 252, 0.95)' : 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: isScrolled ? 'blur(10px)' : 'blur(5px)',
+        borderBottom: isScrolled ? '1px solid #e5e7eb' : 'none',
+        boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none'
       }}
     >
       <div className="max-w-7xl mx-auto container">

@@ -354,7 +354,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%)' }}>
       {/* Calendly Modal */}
       {showCalendly && (
         <div style={{
@@ -388,15 +388,9 @@ With expert guidance, you can confidently work toward your lifestyle goals while
       <section 
         className="relative min-h-screen flex items-center justify-center"
         style={{
-          backgroundImage: 'url("/hero-bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          background: 'linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%)'
         }}
-      >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40" style={{ zIndex: 2 }}></div>
-        
+      >        
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -404,10 +398,10 @@ With expert guidance, you can confidently work toward your lifestyle goals while
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ color: '#1e40af' }}>
               FINANCIAL PLANNING
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#374151' }}>
               Comprehensive wealth strategies and investment planning to secure your financial future.
             </p>
             <motion.div
@@ -420,7 +414,8 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                 onClick={() => setShowCalendly(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                className="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
               >
                 <Calendar className="w-5 h-5" />
                 <span>Schedule a Meeting</span>
@@ -431,7 +426,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
       </section>
 
       {/* Introduction Section */}
-      <section className="py-20 bg-slate-800">
+      <section className="py-20" style={{ backgroundColor: '#f8fafc' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -440,10 +435,10 @@ With expert guidance, you can confidently work toward your lifestyle goals while
             transition={{ duration: 0.8 }}
             className="text-center space-y-8"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">
+            <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               OUR FINANCIAL PLANNING SERVICES
             </h2>
-            <p className="text-xl leading-relaxed text-gray-300 max-w-4xl mx-auto">
+            <p className="text-xl leading-relaxed max-w-4xl mx-auto" style={{ color: '#374151' }}>
               We can give you the best of both worlds. Our comprehensive financial planning services 
               are designed to help you achieve your financial goals and secure your future.
             </p>
@@ -452,7 +447,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
       </section>
 
       {/* Services Grid / Service Detail */}
-      <section id="services-section" className="py-20 bg-slate-900">
+      <section id="services-section" className="py-20" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {!selectedService ? (
             // Services Grid View
@@ -464,10 +459,10 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                 transition={{ duration: 0.8 }}
                 className="text-center space-y-4 mb-16"
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
                   Explore Our Financial Planning Services
                 </h2>
-                <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                <p className="text-lg max-w-3xl mx-auto" style={{ color: '#374151' }}>
                   Comprehensive solutions tailored to your unique financial goals and circumstances
                 </p>
               </motion.div>
@@ -483,19 +478,26 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                    className="p-6 rounded-xl border transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
+                    style={{ 
+                      background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%)', 
+                      borderColor: '#e5e7eb',
+                      color: 'white',
+                      boxShadow: '0 4px 20px rgba(6, 182, 212, 0.3)'
+                    }}
                     onClick={() => handleServiceClick(service)}
                   >
                     <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="p-3 bg-blue-600 rounded-full">
+                      <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)' }}>
                         <service.icon className="w-6 h-6 text-white" />
                       </div>
                       <h3 className="text-sm font-semibold text-white leading-tight">{service.title}</h3>
-                      <p className="text-gray-300 text-xs leading-relaxed">{service.description}</p>
+                      <p className="text-xs leading-relaxed text-white opacity-90">{service.description}</p>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-auto text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-300 text-xs"
+                        className="mt-auto font-semibold transition-colors duration-300 text-xs"
+                        style={{ color: '#ffffff' }}
                       >
                         Explore →
                       </motion.button>
@@ -518,24 +520,28 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                 onClick={handleBackClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors duration-300"
+                className="flex items-center space-x-2 mb-8 transition-colors duration-300 px-4 py-2 rounded-lg font-semibold"
+                style={{ 
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', 
+                  color: 'white' 
+                }}
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back to Services</span>
               </motion.button>
 
               {/* Service Detail Content */}
-              <div className="bg-slate-800 rounded-xl p-8 border border-slate-700">
+              <div className="rounded-xl p-8 border" style={{ backgroundColor: '#f8fafc', borderColor: '#e5e7eb' }}>
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="p-4 bg-blue-600 rounded-full">
+                  <div className="p-4 rounded-full" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
                     <selectedService.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h1 className="text-3xl lg:text-4xl font-bold text-white">
+                  <h1 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
                     {selectedService.title}
                   </h1>
                 </div>
 
-                <h2 className="text-2xl font-semibold text-white mb-6">
+                <h2 className="text-2xl font-semibold mb-6" style={{ color: '#1e40af' }}>
                   {selectedService.detailedContent.title}
                 </h2>
 
@@ -543,72 +549,72 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                   {selectedService.title === "Superannuation Planning" ? (
                     // Special rendering for Superannuation Planning with table
                     <div>
-                      <p className="text-gray-300 leading-relaxed mb-6">
+                      <p className="leading-relaxed mb-6" style={{ color: '#374151' }}>
                         Superannuation is a cornerstone of retirement planning, offering a tax-efficient way to grow your wealth for the future. Choosing the right type of superannuation fund is critical, as it impacts fees, investment options, and the time required to manage your fund.
                       </p>
-                      <p className="text-gray-300 leading-relaxed mb-6">
+                      <p className="leading-relaxed mb-6" style={{ color: '#374151' }}>
                         A financial adviser can help you navigate the different superannuation options—industry funds, retail funds, and Self-Managed Super Funds (SMSFs)—to find the one that best suits your financial goals, lifestyle, and preferences. With expert guidance, you'll be equipped to make informed decisions and maximize your retirement savings.
                       </p>
                       
-                      <h3 className="text-xl font-semibold text-white mb-4">
+                      <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e40af' }}>
                         Key Differences Between Superannuation Options
                       </h3>
                       
                       {/* Comparison Table */}
                       <div className="overflow-x-auto mb-6">
-                        <table className="w-full border-collapse border border-slate-600 bg-slate-700 rounded-lg">
+                        <table className="w-full border-collapse border rounded-lg" style={{ borderColor: '#e5e7eb', backgroundColor: '#ffffff' }}>
                           <thead>
-                            <tr className="bg-slate-600">
-                              <th className="border border-slate-500 px-4 py-3 text-left text-white font-semibold">Feature</th>
-                              <th className="border border-slate-500 px-4 py-3 text-left text-white font-semibold">Industry Funds</th>
-                              <th className="border border-slate-500 px-4 py-3 text-left text-white font-semibold">Retail Funds</th>
-                              <th className="border border-slate-500 px-4 py-3 text-left text-white font-semibold">SMSFs</th>
+                            <tr style={{ backgroundColor: '#f3f4f6' }}>
+                              <th className="border px-4 py-3 text-left font-semibold" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>Feature</th>
+                              <th className="border px-4 py-3 text-left font-semibold" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>Industry Funds</th>
+                              <th className="border px-4 py-3 text-left font-semibold" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>Retail Funds</th>
+                              <th className="border px-4 py-3 text-left font-semibold" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>SMSFs</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
-                              <td className="border border-slate-500 px-4 py-3 text-white font-medium">Fees</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Low to moderate, often run on a not-for-profit basis.</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Typically higher due to administration and management costs.</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Can be high due to setup, audit, and administration costs.</td>
+                              <td className="border px-4 py-3 font-medium" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>Fees</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Low to moderate, often run on a not-for-profit basis.</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Typically higher due to administration and management costs.</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Can be high due to setup, audit, and administration costs.</td>
                             </tr>
-                            <tr className="bg-slate-750">
-                              <td className="border border-slate-500 px-4 py-3 text-white font-medium">Investment Options</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Limited but simple, with predefined investment options.</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Wide variety of managed and custom investment choices.</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Full control over investments, including property and shares.</td>
+                            <tr style={{ backgroundColor: '#f9fafb' }}>
+                              <td className="border px-4 py-3 font-medium" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>Investment Options</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Limited but simple, with predefined investment options.</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Wide variety of managed and custom investment choices.</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Full control over investments, including property and shares.</td>
                             </tr>
                             <tr>
-                              <td className="border border-slate-500 px-4 py-3 text-white font-medium">Time to Manage</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Minimal, as the fund is managed for you.</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">Minimal, but requires some level of monitoring.</td>
-                              <td className="border border-slate-500 px-4 py-3 text-gray-300">High, as you are responsible for compliance and management.</td>
+                              <td className="border px-4 py-3 font-medium" style={{ borderColor: '#e5e7eb', color: '#1e40af' }}>Time to Manage</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Minimal, as the fund is managed for you.</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>Minimal, but requires some level of monitoring.</td>
+                              <td className="border px-4 py-3" style={{ borderColor: '#e5e7eb', color: '#374151' }}>High, as you are responsible for compliance and management.</td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
 
-                      <h3 className="text-xl font-semibold text-white mb-4">
+                      <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e40af' }}>
                         How We Can Help
                       </h3>
                       
-                      <ul className="text-gray-300 space-y-3 mb-4">
+                      <ul className="space-y-3 mb-4" style={{ color: '#374151' }}>
                         <li className="flex items-start">
-                          <span className="text-blue-400 mr-2">•</span>
+                          <span className="mr-2" style={{ color: '#3b82f6' }}>•</span>
                           <div>
-                            <strong className="text-white">Choosing the Right Fund:</strong> Assess your goals, risk tolerance, and preferences to select the most suitable fund.
+                            <strong style={{ color: '#1e40af' }}>Choosing the Right Fund:</strong> Assess your goals, risk tolerance, and preferences to select the most suitable fund.
                           </div>
                         </li>
                         <li className="flex items-start">
-                          <span className="text-blue-400 mr-2">•</span>
+                          <span className="mr-2" style={{ color: '#3b82f6' }}>•</span>
                           <div>
-                            <strong className="text-white">Investment Strategy:</strong> Develop a tailored strategy to grow your super effectively.
+                            <strong style={{ color: '#1e40af' }}>Investment Strategy:</strong> Develop a tailored strategy to grow your super effectively.
                           </div>
                         </li>
                         <li className="flex items-start">
-                          <span className="text-blue-400 mr-2">•</span>
+                          <span className="mr-2" style={{ color: '#3b82f6' }}>•</span>
                           <div>
-                            <strong className="text-white">Ongoing Support:</strong> Provide ongoing advice to ensure your super remains aligned with your retirement goals and adjusts to changes in circumstances.
+                            <strong style={{ color: '#1e40af' }}>Ongoing Support:</strong> Provide ongoing advice to ensure your super remains aligned with your retirement goals and adjusts to changes in circumstances.
                           </div>
                         </li>
                       </ul>
@@ -616,7 +622,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                   ) : (
                     // Default rendering for other services
                     selectedService.detailedContent.content.split('\n\n').map((paragraph, index) => (
-                      <p key={index} className="text-gray-300 leading-relaxed mb-4">
+                      <p key={index} className="leading-relaxed mb-4" style={{ color: '#374151' }}>
                         {paragraph}
                       </p>
                     ))
@@ -638,11 +644,11 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                   selectedService.title === "SMSF Strategies & Advice" ||
                   selectedService.title === "Wealth Preservation Strategies" ||
                   selectedService.title === "Lifestyle Planning") && (
-                  <div className="mt-8 pt-6 border-t border-slate-700">
-                    <h3 className="text-xl font-semibold text-white mb-4">
+                  <div className="mt-8 pt-6 border-t" style={{ borderColor: '#e5e7eb' }}>
+                    <h3 className="text-xl font-semibold mb-4" style={{ color: '#1e40af' }}>
                       Book a Complimentary Meeting
                     </h3>
-                    <p className="text-gray-300 mb-6">
+                    <p className="mb-6" style={{ color: '#374151' }}>
                       {selectedService.title === "Trusts" && 
                         "If you're interested in exploring how a trust could work for you or your business, we invite you to schedule a complimentary consultation. Let's discuss your needs and how we can help."
                       }
@@ -690,7 +696,8 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                       onClick={() => setShowCalendly(true)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center space-x-2"
+                      className="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 inline-flex items-center space-x-2"
+                      style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
                     >
                       <Calendar className="w-5 h-5" />
                       <span>Schedule a Meeting</span>
@@ -705,7 +712,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
 
       {/* Call to Action Section */}
       {!selectedService && (
-        <section className="py-20 bg-slate-800">
+        <section className="py-20" style={{ backgroundColor: '#f8fafc' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
@@ -714,10 +721,10 @@ With expert guidance, you can confidently work toward your lifestyle goals while
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-white">
+              <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
                 Schedule a Consultation Today!
               </h2>
-              <p className="text-xl leading-relaxed text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#374151' }}>
                 Book a No-Obligation 30 Minute Consultation with GTM Finance and take the first step 
                 towards securing your financial future.
               </p>
@@ -728,7 +735,8 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                   onClick={() => setShowCalendly(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                  className="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center space-x-2"
+                  style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}
                 >
                   <Calendar className="w-5 h-5" />
                   <span>Schedule a Meeting</span>

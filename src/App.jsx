@@ -9,23 +9,23 @@ import './App.css'
 import Footer from './Footer'
 import { sendDownloadInfo, sendContactForm } from './emailService'
 
-// Create Material UI dark theme
-const darkTheme = createTheme({
+// Create Material UI light theme
+const lightTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#3b82f6',
+      main: '#8ECAE6',
     },
     secondary: {
-      main: '#64748b',
+      main: '#75b8d9',
     },
     background: {
-      default: '#1e293b',
-      paper: '#334155',
+      default: '#EFF7F6',
+      paper: '#ffffff',
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#cbd5e1',
+      primary: '#2d3748',
+      secondary: '#4a5568',
     },
   },
   components: {
@@ -33,22 +33,22 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-root': {
-            backgroundColor: '#475569',
+            backgroundColor: '#ffffff',
             '& fieldset': {
-              borderColor: '#64748b',
+              borderColor: '#e2e8f0',
             },
             '&:hover fieldset': {
-              borderColor: '#3b82f6',
+              borderColor: '#8ECAE6',
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#3b82f6',
+              borderColor: '#8ECAE6',
             },
           },
           '& .MuiInputLabel-root': {
-            color: '#cbd5e1',
+            color: '#4a5568',
           },
           '& .MuiOutlinedInput-input': {
-            color: '#ffffff',
+            color: '#2d3748',
           },
         },
       },
@@ -109,11 +109,11 @@ function App() {
     return () => clearInterval(typeInterval)
   }, [])
 
-  // Set permanent dark theme
+  // Set light theme
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    document.documentElement.classList.add('dark')
-    document.documentElement.classList.remove('light')
+    document.documentElement.setAttribute('data-theme', 'light')
+    document.documentElement.classList.add('light')
+    document.documentElement.classList.remove('dark')
   }, [])
 
   // Scroll detection for navbar
@@ -140,9 +140,9 @@ function App() {
     if (!downloadForm.name || !downloadForm.phone || !downloadForm.email) {
       toast.error('Please fill in all fields', {
         style: {
-          background: '#1e293b',
-          color: '#ffffff',
-          border: '1px solid #ef4444',
+          background: '#ffffff',
+          color: '#2d3748',
+          border: '1px solid #f56565',
         },
       })
       return
@@ -153,9 +153,9 @@ function App() {
     if (!emailRegex.test(downloadForm.email)) {
       toast.error('Please enter a valid email address', {
         style: {
-          background: '#1e293b',
-          color: '#ffffff',
-          border: '1px solid #ef4444',
+          background: '#ffffff',
+          color: '#2d3748',
+          border: '1px solid #f56565',
         },
       })
       return
@@ -183,9 +183,9 @@ function App() {
       // Show success toast
       toast.success('Download started!', {
         style: {
-          background: '#1e293b',
-          color: '#ffffff',
-          border: '1px solid #22c55e',
+          background: '#ffffff',
+          color: '#2d3748',
+          border: '1px solid #38a169',
         },
         duration: 4000,
       })
@@ -241,9 +241,9 @@ function App() {
     if (!contactForm.firstName || !contactForm.lastName || !contactForm.email || !contactForm.phone || !contactForm.message) {
       toast.error('Please fill in all fields', {
         style: {
-          background: '#1e293b',
-          color: '#ffffff',
-          border: '1px solid #ef4444',
+          background: '#ffffff',
+          color: '#2d3748',
+          border: '1px solid #f56565',
         },
       })
       return
@@ -255,9 +255,9 @@ function App() {
       await sendContactForm(contactForm)
       toast.success('Thank you! Your message has been sent successfully. We will get back to you soon.', {
         style: {
-          background: '#1e293b',
-          color: '#ffffff',
-          border: '1px solid #22c55e',
+          background: '#ffffff',
+          color: '#2d3748',
+          border: '1px solid #38a169',
         },
         duration: 5000,
       })
@@ -274,9 +274,9 @@ function App() {
       console.error('Error sending contact form:', error)
       toast.error('Sorry, there was an error sending your message. Please try again.', {
         style: {
-          background: '#1e293b',
-          color: '#ffffff',
-          border: '1px solid #ef4444',
+          background: '#ffffff',
+          color: '#2d3748',
+          border: '1px solid #f56565',
         },
       })
     } finally {
@@ -592,10 +592,10 @@ function App() {
       <nav 
         className="fixed w-full z-50 transition-all duration-300"
         style={{ 
-          backgroundColor: isScrolled ? 'rgba(26, 32, 44, 0.95)' : 'transparent',
+          backgroundColor: isScrolled ? 'rgba(239, 247, 246, 0.95)' : 'transparent',
           backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-          borderBottom: isScrolled ? '1px solid #4a5568' : 'none',
-          boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.3)' : 'none'
+          borderBottom: isScrolled ? '1px solid #e2e8f0' : 'none',
+          boxShadow: isScrolled ? '0 4px 6px -1px rgba(142, 202, 230, 0.1)' : 'none'
         }}
       >
         <div className="max-w-7xl mx-auto container">
@@ -629,6 +629,7 @@ function App() {
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary px-6 py-3"
+                style={{ color: '#ffffff' }}
               >
                 Schedule Meeting
               </motion.a>
@@ -678,24 +679,15 @@ function App() {
         )}
       </nav>
 
-      {/* Gradient Background Container for Hero + About + Services */}
-      <div 
-        className="relative"
+      {/* Hero Section */}
+      <motion.section
+        id="home"
+        className="hero-section pt-16 relative overflow-hidden"
         style={{
-          background: 'linear-gradient(to bottom, #000000 0%, #1e40af 50%, #ffffff 100%)',
-          minHeight: '300vh',
-          position: 'relative',
-          zIndex: 1
+          zIndex: 1,
+          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)',
+          paddingBottom: '5rem'
         }}
-      >
-        {/* Hero Section */}
-        <motion.section
-          id="home"
-          className="hero-section pt-16 relative overflow-hidden"
-          style={{
-            zIndex: 1,
-            background: 'transparent'
-          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -743,7 +735,7 @@ function App() {
               className="space-y-6"
             >
               {/* Main heading with typewriter effect */}
-              <motion.div className="text-4xl lg:text-6xl font-bold text-white leading-tight min-h-[120px] lg:min-h-[200px]" variants={zoomIn}>
+              <motion.div className="text-4xl lg:text-6xl font-bold leading-tight min-h-[120px] lg:min-h-[200px]" style={{ color: '#1e40af' }} variants={zoomIn}>
                 <div className="relative">
                   {/* First line with typewriter effect */}
                   <motion.span
@@ -762,7 +754,8 @@ function App() {
                           repeat: Infinity,
                           ease: "easeInOut" 
                         }}
-                        className="inline-block ml-1 text-white"
+                        className="inline-block ml-1"
+                        style={{ color: '#1e40af' }}
                       >
                         |
                       </motion.span>
@@ -784,7 +777,8 @@ function App() {
                         stiffness: 120,
                         damping: 30
                       }}
-                      className="text-white inline-block"
+                      className="inline-block"
+                      style={{ color: '#1e40af' }}
                     >
                       {showSecondLine && (
                         <>
@@ -812,7 +806,8 @@ function App() {
                                 duration: 2.5,
                                 ease: "easeInOut" 
                               }}
-                              className="inline-block ml-1 text-white"
+                              className="inline-block ml-1"
+                              style={{ color: '#1e40af' }}
                             >
                               |
                             </motion.span>
@@ -829,7 +824,8 @@ function App() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.8, delay: 1.2 }}
-                className="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto"
+                className="text-xl leading-relaxed max-w-3xl mx-auto"
+                style={{ color: '#1e3a8a' }}
               >
                 We believe financial planning isn't just about numbers—it's about giving you clarity, 
                 confidence, and a structured strategy to achieve your goals.
@@ -846,6 +842,7 @@ function App() {
                   }}
                   whileTap={{ scale: 0.98 }}
                   className="btn-primary text-lg px-8 py-4 relative overflow-hidden"
+                  style={{ color: '#ffffff' }}
                   initial={{ rotateX: 90 }}
                   animate={{ rotateX: 0 }}
                   transition={{ duration: 1.8, delay: 2.2 }}
@@ -862,11 +859,12 @@ function App() {
                   href="#about"
                   whileHover={{ 
                     scale: 1.02,
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    borderColor: "#93c5fd"
+                    backgroundColor: "rgba(142, 202, 230, 0.1)",
+                    borderColor: "#8ECAE6"
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-secondary text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-500"
+                  className="btn-secondary text-lg px-8 py-4 transition-all duration-500"
+                  style={{ color: '#ffffff' }}
                   initial={{ rotateX: -90 }}
                   animate={{ rotateX: 0 }}
                   transition={{ duration: 1.8, delay: 2.6 }}
@@ -883,7 +881,10 @@ function App() {
       <motion.section
         id="about"
         className="py-20 relative"
-        style={{ position: 'relative' }}
+        style={{ 
+          position: 'relative',
+          backgroundColor: '#f0f9ff'
+        }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -892,10 +893,10 @@ function App() {
         
         <motion.div className="max-w-7xl mx-auto container relative z-10" variants={zoomIn}>
           <motion.div className="text-center space-y-6 mb-16" variants={slideInLeft}>
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               We Get It, Because We're Just Like You
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-200">
+            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#374151' }}>
               You've built a career you're proud of, and now it's time to take control of your financial future. 
               But knowing how to maximize wealth, minimize tax, and create financial security can feel overwhelming 
               without the right guidance.
@@ -917,19 +918,20 @@ function App() {
               transition={{ duration: 0.4 }}
               className="relative group"
             >
-              <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-xl p-8 text-center border border-gray-600 border-opacity-40 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full">
+              <div className="rounded-xl p-8 text-center border border-gray-200 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
                 <motion.div 
                   whileHover={{ rotate: 180, scale: 1.05 }}
                   transition={{ duration: 0.8 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-blue-600 bg-opacity-20 border border-blue-500 border-opacity-30"
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30"
                 >
-                  <Users className="text-blue-400" size={32} />
+                  <Users className="text-blue-900" size={32} />
                 </motion.div>
                 <motion.h3 
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="text-xl font-semibold mb-4 text-white"
+                  className="text-xl font-semibold mb-4"
+                  style={{ color: '#ffffff' }}
                 >
                   Personal Approach
                 </motion.h3>
@@ -937,7 +939,8 @@ function App() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
-                  className="text-gray-300 leading-relaxed"
+                  className="leading-relaxed"
+                  style={{ color: '#ffffff' }}
                 >
                   We understand your unique situation and create tailored strategies that work for your lifestyle.
                 </motion.p>
@@ -953,23 +956,24 @@ function App() {
               whileHover={{ 
                 scale: 1.02, 
                 y: -8,
-                boxShadow: "0 15px 35px rgba(59, 130, 246, 0.2)"
+                boxShadow: "0 15px 35px rgba(142, 202, 230, 0.2)"
               }}
               className="relative group"
             >
-              <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-xl p-8 text-center border border-gray-600 border-opacity-40 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full">
+              <div className="rounded-xl p-8 text-center border border-gray-200 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
                 <motion.div 
                   whileHover={{ rotate: 180, scale: 1.05 }}
                   transition={{ duration: 0.8 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-blue-600 bg-opacity-20 border border-blue-500 border-opacity-30"
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30"
                 >
-                  <Shield className="text-blue-400" size={32} />
+                  <Shield className="text-blue-900" size={32} />
                 </motion.div>
                 <motion.h3 
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="text-xl font-semibold mb-4 text-white"
+                  className="text-xl font-semibold mb-4"
+                  style={{ color: '#ffffff' }}
                 >
                   Expert Guidance
                 </motion.h3>
@@ -977,7 +981,8 @@ function App() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
-                  className="text-gray-300 leading-relaxed"
+                  className="leading-relaxed"
+                  style={{ color: '#ffffff' }}
                 >
                   With years of experience, we provide professional advice you can trust for your financial journey.
                 </motion.p>
@@ -993,23 +998,24 @@ function App() {
               whileHover={{ 
                 scale: 1.02, 
                 y: -8,
-                boxShadow: "0 15px 35px rgba(59, 130, 246, 0.2)"
+                boxShadow: "0 15px 35px rgba(142, 202, 230, 0.2)"
               }}
               className="relative group"
             >
-              <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm rounded-xl p-8 text-center border border-gray-600 border-opacity-40 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full">
+              <div className="rounded-xl p-8 text-center border border-gray-200 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
                 <motion.div 
                   whileHover={{ rotate: 180, scale: 1.05 }}
                   transition={{ duration: 0.8 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-blue-600 bg-opacity-20 border border-blue-500 border-opacity-30"
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30"
                 >
-                  <TrendingUp className="text-blue-400" size={32} />
+                  <TrendingUp className="text-blue-900" size={32} />
                 </motion.div>
                 <motion.h3 
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
-                  className="text-xl font-semibold mb-4 text-white"
+                  className="text-xl font-semibold mb-4"
+                  style={{ color: '#ffffff' }}
                 >
                   Results Driven
                 </motion.h3>
@@ -1017,7 +1023,8 @@ function App() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.7, duration: 0.6 }}
-                  className="text-gray-300 leading-relaxed"
+                  className="leading-relaxed"
+                  style={{ color: '#ffffff' }}
                 >
                   We focus on strategies that deliver real results and help you achieve your financial goals.
                 </motion.p>
@@ -1027,131 +1034,13 @@ function App() {
         </motion.div>
       </motion.section>
 
-      {/* Services Overview */}
-      <section 
-        id="services" 
-        className="py-20 relative"
-        style={{
-          position: 'relative'
-        }}
-      >
-        
-        <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="text-center space-y-6 mb-16"
-          >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-gray-800">
-              Our Services
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-600">
-              Comprehensive financial solutions tailored to your needs
-            </motion.p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
-              viewport={{ once: true }}
-              className="card hover:shadow-2xl"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--accent-light)' }}>
-                  <TrendingUp style={{ color: 'var(--accent)' }} size={24} />
-                </div>
-                <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>Financial Planning</h3>
-              </div>
-              <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
-                Comprehensive wealth strategies, investment planning, and retirement preparation 
-                to secure your financial future.
-              </p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
-                  <span style={{ color: 'var(--text-secondary)' }}>Wealth maximization strategies</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
-                  <span style={{ color: 'var(--text-secondary)' }}>Tax minimization planning</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
-                  <span style={{ color: 'var(--text-secondary)' }}>Investment portfolio management</span>
-                </li>
-              </ul>
-              <Link to="/financial-planning" className="btn-primary">
-                Learn More <ArrowRight size={16} />
-              </Link>
-            </motion.div>
-
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="card hover:shadow-2xl"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--accent-light)' }}>
-                  <Shield style={{ color: 'var(--accent)' }} size={24} />
-                </div>
-                <h3 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>Mortgage Broking</h3>
-              </div>
-              <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
-                Expert mortgage advice and competitive lending solutions to help you 
-                achieve your property investment goals.
-              </p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
-                  <span style={{ color: 'var(--text-secondary)' }}>Home loan comparisons</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
-                  <span style={{ color: 'var(--text-secondary)' }}>Investment property financing</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
-                  <span style={{ color: 'var(--text-secondary)' }}>Refinancing opportunities</span>
-                </li>
-              </ul>
-              <Link to="/mortgage-broking" className="btn-primary">
-                Learn More <ArrowRight size={16} />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-      </div>
-      
       {/* Resources Section */}
       <section 
         className="py-20 relative" 
         style={{
-          // backgroundImage: 'url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundColor: '#ffffff'
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         
         <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
           <motion.div 
@@ -1161,16 +1050,24 @@ function App() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 
+              variants={fadeInUp} 
+              className="text-3xl lg:text-4xl font-bold" 
+              style={{ color: '#2d3748' }}
+            >
               Free Resources & Guides
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-200">
+            <motion.p 
+              variants={fadeInUp} 
+              className="text-xl max-w-3xl mx-auto" 
+              style={{ color: '#4a5568' }}
+            >
               Download our comprehensive guides to start your financial journey
             </motion.p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {resources.map((res, idx) => (
+            {resources.map((res) => (
               <motion.div
                 key={res.id}
                 variants={fadeIn}
@@ -1219,8 +1116,8 @@ function App() {
                     padding: 24
                   }}
                 >
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{res.title}</h3>
-                  <p className="mb-4 text-sm" style={{ color: 'var(--text-secondary)' }}>{res.desc}</p>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#ffffff' }}>{res.title}</h3>
+                  <p className="mb-4 text-sm" style={{ color: '#ffffff' }}>{res.desc}</p>
                   <button 
                     onClick={() => handleDownloadClick(res)} 
                     className={res.btnClass}
@@ -1234,18 +1131,15 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Services Overview */}
       <section 
+        id="services" 
         className="py-20 relative"
         style={{
-          backgroundImage: 'url("/bg-2.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          position: 'relative',
+          backgroundColor: '#f0fdf4'
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         
         <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
           <motion.div 
@@ -1255,10 +1149,149 @@ function App() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#15803d' }}>
+              Our Services
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#166534' }}>
+              Comprehensive financial solutions tailored to your needs
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <motion.div 
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              whileHover={{ 
+                scale: 1.02, 
+                y: -8,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              viewport={{ once: true }}
+              className="hover:shadow-2xl"
+              style={{
+                background: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+                padding: '2rem',
+                borderRadius: '0.75rem',
+                border: '1px solid #e5e7eb'
+              }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}>
+                  <TrendingUp style={{ color: '#ffffff' }} size={24} />
+                </div>
+                <h3 className="text-2xl font-bold" style={{ color: '#ffffff' }}>Financial Planning</h3>
+              </div>
+              <p className="mb-6" style={{ color: '#ffffff' }}>
+                Comprehensive wealth strategies, investment planning, and retirement preparation 
+                to secure your financial future.
+              </p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-500" size={16} />
+                  <span style={{ color: '#ffffff' }}>Wealth maximization strategies</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-500" size={16} />
+                  <span style={{ color: '#ffffff' }}>Tax minimization planning</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-500" size={16} />
+                  <span style={{ color: '#ffffff' }}>Investment portfolio management</span>
+                </li>
+              </ul>
+              <Link 
+                to="/financial-planning" 
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, #15803d 0%, #166534 100%)',
+                  color: '#ffffff'
+                }}
+              >
+                Learn More <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+
+            <motion.div 
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              whileHover={{ 
+                scale: 1.02, 
+                y: -8,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="hover:shadow-2xl"
+              style={{
+                background: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+                padding: '2rem',
+                borderRadius: '0.75rem',
+                border: '1px solid #e5e7eb'
+              }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 rounded-full" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}>
+                  <Shield style={{ color: '#ffffff' }} size={24} />
+                </div>
+                <h3 className="text-2xl font-bold" style={{ color: '#ffffff' }}>Mortgage Broking</h3>
+              </div>
+              <p className="mb-6" style={{ color: '#ffffff' }}>
+                Expert mortgage advice and competitive lending solutions to help you 
+                achieve your property investment goals.
+              </p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-500" size={16} />
+                  <span style={{ color: '#ffffff' }}>Home loan comparisons</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-500" size={16} />
+                  <span style={{ color: '#ffffff' }}>Investment property financing</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-500" size={16} />
+                  <span style={{ color: '#ffffff' }}>Refinancing opportunities</span>
+                </li>
+              </ul>
+              <Link 
+                to="/mortgage-broking" 
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, #15803d 0%, #166534 100%)',
+                  color: '#ffffff'
+                }}
+              >
+                Learn More <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      
+      
+
+      {/* Testimonials Section */}
+      <section 
+        className="py-20 relative"
+        style={{
+          backgroundColor: '#fef3c7'
+        }}
+      >
+        
+        <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="text-center space-y-6 mb-16"
+          >
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#92400e' }}>
               What Our Clients Say
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-200">
+            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#451a03' }}>
               Don't just take our word for it - hear from satisfied clients who've achieved their financial goals
             </motion.p>
           </motion.div>
@@ -1402,14 +1435,9 @@ function App() {
         id="contact" 
         className="py-20 relative"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundColor: '#e0f2fe'
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         
         <div className="max-w-7xl mx-auto container relative" style={{ zIndex: 10 }}>
           <motion.div 
@@ -1419,10 +1447,18 @@ function App() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold text-white">
+            <motion.h2 
+              variants={fadeInUp} 
+              className="text-3xl lg:text-4xl font-bold" 
+              style={{ color: '#0c4a6e' }}
+            >
               Get In Touch
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto text-gray-200">
+            <motion.p 
+              variants={fadeInUp} 
+              className="text-xl max-w-3xl mx-auto" 
+              style={{ color: '#164e63' }}
+            >
               Ready to take control of your financial future? Contact us today for a free consultation.
             </motion.p>
           </motion.div>
@@ -1439,10 +1475,16 @@ function App() {
               }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="card w-full max-w-2xl"
+              className="w-full max-w-2xl"
+              style={{
+                background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
+                padding: '2rem',
+                borderRadius: '0.75rem',
+                border: '1px solid #e5e7eb'
+              }}
             >
-              <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>Send us a Message</h3>
-              <ThemeProvider theme={darkTheme}>
+              <h3 className="text-2xl font-bold mb-6" style={{ color: '#ffffff' }}>Send us a Message</h3>
+              <ThemeProvider theme={lightTheme}>
                 <Box component="form" onSubmit={handleContactSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   <Grid container spacing={2}>
                     <Grid sx={{ xs : 12, sm: 6 }}>
@@ -1510,12 +1552,15 @@ function App() {
                     disabled={isContactSending}
                     sx={{ 
                       py: 1.5,
-                      bgcolor: '#3b82f6',
+                      background: 'linear-gradient(135deg, #0c4a6e 0%, #164e63 100%)',
+                      color: '#ffffff',
                       '&:hover': {
-                        bgcolor: '#2563eb'
+                        background: 'linear-gradient(135deg, #075985 0%, #0c4a6e 100%)',
+                        color: '#ffffff'
                       },
                       '&:disabled': {
-                        bgcolor: '#6b7280'
+                        bgcolor: '#6b7280',
+                        color: '#ffffff'
                       }
                     }}
                   >
