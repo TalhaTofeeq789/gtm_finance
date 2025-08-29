@@ -2,23 +2,27 @@
 // EmailJS frontend email sending service
 import emailjs from '@emailjs/browser';
 
-// Replace these with your actual EmailJS credentials
-const SERVICE_ID = 'service_kel5mc7';
-const TEMPLATE_ID = 'template_pl9zjdl';
-const USER_ID = 'KJUYeP7IZD4EVpdnn'; 
+// EmailJS credentials from environment variables
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const USER_ID = import.meta.env.VITE_EMAILJS_USER_ID; 
 
 /**
- * Sends an email to talhatofeeq2003@gmail.com with user info and book name
  * @param {Object} userInfo - Contains name, email, and phone
  * @param {string} bookName - Name of the downloaded book
  * @returns {Promise}
  */
 export function sendDownloadInfo(userInfo, bookName) {
+	console.log('🚀 [EmailJS] Starting sendDownloadInfo function...');
+	console.log('📝 [EmailJS] User Info:', userInfo);
+	console.log('📚 [EmailJS] Book Name:', bookName);
+	
 	// Initialize EmailJS with public key
+	console.log('🔧 [EmailJS] Initializing EmailJS with User ID:', USER_ID);
 	emailjs.init(USER_ID);
 	
 	const templateParams = {
-		to_email: 'talhatofeeq2003@gmail.com',
+		to_email: 'Lopeye@gtmfinance.com.au',
 		user_name: userInfo.name || 'User',
 		user_email: userInfo.email || 'N/A',
 		user_phone: userInfo.phone || 'N/A',
@@ -28,13 +32,24 @@ export function sendDownloadInfo(userInfo, bookName) {
 		message: `Hello,\n\n${userInfo.name || 'A user'} has downloaded the book: "${bookName}" from your website.\n\nUser Details:\n- Name: ${userInfo.name}\n- Email: ${userInfo.email}\n- Phone: ${userInfo.phone}\n- Download Date: ${new Date().toLocaleDateString()}\n- Download Time: ${new Date().toLocaleTimeString()}\n\nThank you for providing valuable resources!\n\nBest regards,\nGTM Finance Team`
 	};
 
+	console.log('📧 [EmailJS] Template Parameters:', templateParams);
+	console.log('🔗 [EmailJS] Service ID:', SERVICE_ID);
+	console.log('📄 [EmailJS] Template ID:', TEMPLATE_ID);
+	console.log('⏳ [EmailJS] Attempting to send email...');
+
 	return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
 		.then((response) => {
-			console.log('Email sent successfully:', response.status, response.text);
+			console.log('✅ [EmailJS] Email sent successfully!');
+			console.log('📊 [EmailJS] Response Status:', response.status);
+			console.log('📝 [EmailJS] Response Text:', response.text);
+			console.log('🎉 [EmailJS] Download info email delivery confirmed!');
 			return response;
 		})
 		.catch((error) => {
-			console.error('Email sending failed:', error);
+			console.error('❌ [EmailJS] Email sending failed!');
+			console.error('🚨 [EmailJS] Error Details:', error);
+			console.error('📧 [EmailJS] Failed Template Params:', templateParams);
+			console.error('🔍 [EmailJS] Service Config - Service ID:', SERVICE_ID, 'Template ID:', TEMPLATE_ID);
 			throw error;
 		});
 }
@@ -45,11 +60,15 @@ export function sendDownloadInfo(userInfo, bookName) {
  * @returns {Promise}
  */
 export function sendContactForm(contactInfo) {
+	console.log('🚀 [EmailJS] Starting sendContactForm function...');
+	console.log('👤 [EmailJS] Contact Info:', contactInfo);
+	
 	// Initialize EmailJS with public key
+	console.log('🔧 [EmailJS] Initializing EmailJS with User ID:', USER_ID);
 	emailjs.init(USER_ID);
 	
 	const templateParams = {
-		to_email: 'talhatofeeq2003@gmail.com',
+		to_email: 'Lopeye@gtmfinance.com.au',
 		user_name: `${contactInfo.firstName} ${contactInfo.lastName}`,
 		user_email: contactInfo.email || 'N/A',
 		user_phone: contactInfo.phone || 'N/A',
@@ -59,13 +78,25 @@ export function sendContactForm(contactInfo) {
 		message: `Hello,\n\nYou have received a new contact form submission from your GTM Finance website.\n\nContact Details:\n- Name: ${contactInfo.firstName} ${contactInfo.lastName}\n- Email: ${contactInfo.email}\n- Phone: ${contactInfo.phone}\n- Message: ${contactInfo.message}\n- Submitted Date: ${new Date().toLocaleDateString()}\n- Submitted Time: ${new Date().toLocaleTimeString()}\n\nPlease follow up with this potential client promptly.\n\nBest regards,\nGTM Finance Website`
 	};
 
+	console.log('📧 [EmailJS] Template Parameters:', templateParams);
+	console.log('🔗 [EmailJS] Service ID:', SERVICE_ID);
+	console.log('📄 [EmailJS] Template ID:', TEMPLATE_ID);
+	console.log('⏳ [EmailJS] Attempting to send contact form email...');
+
 	return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
 		.then((response) => {
-			console.log('Contact form email sent successfully:', response.status, response.text);
+			console.log('✅ [EmailJS] Contact form email sent successfully!');
+			console.log('📊 [EmailJS] Response Status:', response.status);
+			console.log('📝 [EmailJS] Response Text:', response.text);
+			console.log('🎉 [EmailJS] Contact form email delivery confirmed!');
 			return response;
 		})
 		.catch((error) => {
-			console.error('Contact form email sending failed:', error);
+			console.error('❌ [EmailJS] Contact form email sending failed!');
+			console.error('🚨 [EmailJS] Error Details:', error);
+			console.error('📧 [EmailJS] Failed Template Params:', templateParams);
+			console.error('🔍 [EmailJS] Service Config - Service ID:', SERVICE_ID, 'Template ID:', TEMPLATE_ID);
+			console.error('👤 [EmailJS] Original Contact Info:', contactInfo);
 			throw error;
 		});
 }
