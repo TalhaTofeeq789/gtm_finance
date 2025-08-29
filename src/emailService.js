@@ -3,9 +3,9 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS credentials from environment variables
-const SERVICE_ID = service_szljn19;
-const TEMPLATE_ID = template_7tgjdxm;
-const USER_ID = qyg87wpq8Y7xJzeDI; 
+const SERVICE_ID = "service_szljn19";
+const TEMPLATE_ID = "template_7tgjdxm";
+const USER_ID = "qyg87wpq8Y7xJzeDI";
 
 /**
  * @param {Object} userInfo - Contains name, email, and phone
