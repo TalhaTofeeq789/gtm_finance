@@ -191,7 +191,7 @@ function About() {
                         alt="Lopeye Oyekanmi"
                         sx={{ width: 240, height: 240, bgcolor: '#1e293b', boxShadow: 6 }}
                       />
-                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '10px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
+                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '4px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
                     </Box>
                   </Box>
                   <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
@@ -234,7 +234,7 @@ function About() {
                     <Avatar
                       src="/team/picture4.jpg"
                       alt="Modupe Oyekanmi"
-                      sx={{ width: 240, height: 240, border: '10px solid #222', bgcolor: '#1e293b', boxShadow: 6 }}
+                      sx={{ width: 240, height: 240, border: '4px solid #222', bgcolor: '#1e293b', boxShadow: 6 }}
                     />
                   </Box>
                   <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
@@ -280,7 +280,7 @@ function About() {
                         alt="Evelyne Albrecht"
                         sx={{ width: 240, height: 239, bgcolor: '#1e293b', boxShadow: 6 }}
                       />
-                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '10px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
+                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '4px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
                     </Box>
                   </Box>
                   <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>

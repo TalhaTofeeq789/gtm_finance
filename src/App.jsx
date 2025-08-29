@@ -1116,7 +1116,7 @@ function App() {
                     padding: 24
                   }}
                 >
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#ffffff' }}>{res.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#1e40af' }}>{res.title}</h3>
                   <p className="mb-4 text-sm" style={{ color: '#ffffff' }}>{res.desc}</p>
                   <button 
                     onClick={() => handleDownloadClick(res)} 
@@ -1486,7 +1486,7 @@ function App() {
               <h3 className="text-2xl font-bold mb-6" style={{ color: '#ffffff' }}>Send us a Message</h3>
               <ThemeProvider theme={lightTheme}>
                 <Box component="form" onSubmit={handleContactSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                  <Grid container spacing={2}>
+                  <Grid container spacing={19}>
                     <Grid sx={{ xs : 12, sm: 6 }}>
                       <TextField
                         fullWidth
