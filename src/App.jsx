@@ -1149,15 +1149,15 @@ function App() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#15803d' }}>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               Our Services
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#166534' }}>
+            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#1e40af' }}>
               Comprehensive financial solutions tailored to your needs
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" >
             <motion.div 
               variants={fadeIn}
               initial="hidden"
@@ -1170,7 +1170,7 @@ function App() {
               viewport={{ once: true }}
               className="hover:shadow-2xl"
               style={{
-                background: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+                background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%)',
                 padding: '2rem',
                 borderRadius: '0.75rem',
                 border: '1px solid #e5e7eb'
@@ -1188,15 +1188,15 @@ function App() {
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
+                  <CheckCircle style={{ color: '#fff' }} size={16} />
                   <span style={{ color: '#ffffff' }}>Wealth maximization strategies</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
+                  <CheckCircle style={{ color: '#fff' }} size={16} />
                   <span style={{ color: '#ffffff' }}>Tax minimization planning</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
+                  <CheckCircle style={{ color: '#fff' }} size={16} /> 
                   <span style={{ color: '#ffffff' }}>Investment portfolio management</span>
                 </li>
               </ul>
@@ -1204,7 +1204,7 @@ function App() {
                 to="/financial-planning" 
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
                 style={{
-                  background: 'linear-gradient(135deg, #15803d 0%, #166534 100%)',
+                  background: 'linear-gradient(135deg, #000000 0%, #222222 100%)',
                   color: '#ffffff'
                 }}
               >
@@ -1225,7 +1225,7 @@ function App() {
               transition={{ delay: 0.1 }}
               className="hover:shadow-2xl"
               style={{
-                background: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+                background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%)',
                 padding: '2rem',
                 borderRadius: '0.75rem',
                 border: '1px solid #e5e7eb'
@@ -1243,15 +1243,15 @@ function App() {
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
+                  <CheckCircle style={{ color: '#fff' }} size={16} />
                   <span style={{ color: '#ffffff' }}>Home loan comparisons</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
+                  <CheckCircle style={{ color: '#fff' }} size={16} />
                   <span style={{ color: '#ffffff' }}>Investment property financing</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="text-green-500" size={16} />
+                  <CheckCircle style={{ color: '#fff' }} size={16} />
                   <span style={{ color: '#ffffff' }}>Refinancing opportunities</span>
                 </li>
               </ul>
@@ -1259,7 +1259,7 @@ function App() {
                 to="/mortgage-broking" 
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
                 style={{
-                  background: 'linear-gradient(135deg, #15803d 0%, #166534 100%)',
+                  background: 'linear-gradient(135deg, #000000 0%, #222222 100%)',
                   color: '#ffffff'
                 }}
               >
@@ -1276,7 +1276,7 @@ function App() {
       <section 
         className="py-20 relative"
         style={{
-          backgroundColor: '#fef3c7'
+          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)'
         }}
       >
         
@@ -1288,7 +1288,7 @@ function App() {
             viewport={{ once: true }}
             className="text-center space-y-6 mb-16"
           >
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#92400e' }}>
+            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#9200e' }}>
               What Our Clients Say
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#451a03' }}>
