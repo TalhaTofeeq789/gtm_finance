@@ -15,7 +15,7 @@ function About() {
   const scrollToAboutSection = () => {
     const aboutSection = document.getElementById('about-section')
     if (aboutSection) {
-      aboutSection.scrollIntoView({ 
+      aboutSection.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       })
@@ -62,16 +62,16 @@ function About() {
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section 
+      <section
         className="relative min-h-screen flex items-center justify-center"
         style={{
           background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)'
         }}
       >
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -83,7 +83,7 @@ function About() {
             <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: '#1e3a8a' }}>
               We can give you the best of both worlds.
             </p>
-            <motion.button 
+            <motion.button
               onClick={scrollToAboutSection}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -102,17 +102,17 @@ function About() {
       {/* About Us Content Section */}
       <section id="about-section" className="py-20" style={{ backgroundColor: '#f0f9ff' }}>
         <div className="w-full max-w-4xl mx-auto px-4">
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
             className="flex flex-col items-start"
           >
-            <motion.h2 
-              variants={fadeInUp} 
+            <motion.h2
+              variants={fadeInUp}
               className="text-4xl font-extrabold mb-4 tracking-tight border-b-4 pb-2 pl-1"
-              style={{ 
+              style={{
                 width: 'fit-content',
                 color: '#1e40af',
                 borderColor: '#1e40af'
@@ -120,8 +120,8 @@ function About() {
             >
               About Us
             </motion.h2>
-            <motion.div 
-              variants={fadeInUp} 
+            <motion.div
+              variants={fadeInUp}
               className="space-y-12 text-lg leading-relaxed mt-6 pl-1"
               style={{ color: '#374151' }}
             >
@@ -169,40 +169,61 @@ function About() {
                 viewport={{ once: true }}
                 style={{ height: '100%' }}
               >
-                <Card sx={{ 
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', 
-                  color: 'white', 
-                  borderRadius: 6, 
-                  boxShadow: 8, 
-                  border: 'none', 
-                  height: 420, 
-                  minWidth: 340, 
-                  maxWidth: 420, 
-                  margin: '0 auto', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  p: 4 
-                }}>
-                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
-                    <Box sx={{ position: 'relative', width: 240, height: 240, display: 'inline-block' }}>
-                      <Avatar
-                        src="/team/picture1.png"
-                        alt="Lopeye Oyekanmi"
-                        sx={{ width: 240, height: 240, bgcolor: '#1e293b', boxShadow: 6 }}
-                      />
-                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '4px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
-                    </Box>
+                <Card
+                  sx={{
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                    color: 'white',
+                    borderRadius: 6,
+                    boxShadow: 8,
+                    border: 'none',
+                    width: '100%',
+                    maxWidth: { xs: '100%', sm: 380, md: 420 }, // responsive width
+                    minHeight: { xs: 400, sm: 420 },            // keeps card tall
+                    margin: '0 auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    p: { xs: 2, sm: 3, md: 4 }                  // responsive padding
+                  }}
+                >
+                  <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <Avatar
+                      src="/team/picture1-modified.png"
+                      alt="Lopeye Oyekanmi"
+                      sx={{
+                        width: { xs: 160, sm: 200, md: 240 },  // avatar scales smoothly
+                        height: { xs: 160, sm: 200, md: 240 },
+                        bgcolor: '#1e293b',
+                        boxShadow: 6
+                      }}
+                    />
                   </Box>
                   <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                    <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: 'white', fontSize: '2rem' }}>
+                    <Typography
+                      variant="h5"
+                      fontWeight={700}
+                      gutterBottom
+                      sx={{
+                        color: 'white',
+                        fontSize: { xs: '1.4rem', sm: '1.7rem', md: '2rem' }, // larger again
+                        wordBreak: 'break-word'
+                      }}
+                    >
                       Lopeye Oyekanmi
                     </Typography>
-                    <Typography variant="subtitle1" sx={{ color: '#60a5fa', fontWeight: 500, fontSize: '1.2rem' }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        color: '#60a5fa',
+                        fontWeight: 500,
+                        fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+                      }}
+                    >
                       Founder & Principal Adviser
                     </Typography>
                   </CardContent>
                 </Card>
+
               </motion.div>
             </Grid>
             {/* Team Member 2 */}
@@ -215,37 +236,61 @@ function About() {
                 viewport={{ once: true }}
                 style={{ height: '100%' }}
               >
-                <Card sx={{ 
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', 
-                  color: 'white', 
-                  borderRadius: 6, 
-                  boxShadow: 8, 
-                  border: 'none', 
-                  height: 420, 
-                  minWidth: 340, 
-                  maxWidth: 420, 
-                  margin: '0 auto', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  p: 4 
-                }}>
-                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                <Card
+                  sx={{
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                    color: 'white',
+                    borderRadius: 6,
+                    boxShadow: 8,
+                    border: 'none',
+                    width: '100%',
+                    maxWidth: { xs: '100%', sm: 380, md: 420 }, // responsive width
+                    minHeight: { xs: 400, sm: 420 },            // keeps consistent height
+                    margin: '0 auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    p: { xs: 2, sm: 3, md: 4 }                  // responsive padding
+                  }}
+                >
+                  <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center', width: '100%' }}>
                     <Avatar
                       src="/team/picture4.jpg"
                       alt="Modupe Oyekanmi"
-                      sx={{ width: 240, height: 240, border: '4px solid #222', bgcolor: '#1e293b', boxShadow: 6 }}
+                      sx={{
+                        width: { xs: 160, sm: 200, md: 240 },   // avatar scales on screen size
+                        height: { xs: 160, sm: 200, md: 240 },
+                        bgcolor: '#1e293b',
+                        boxShadow: 6
+                      }}
                     />
                   </Box>
                   <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                    <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: 'white', fontSize: '2rem' }}>
+                    <Typography
+                      variant="h5"
+                      fontWeight={700}
+                      gutterBottom
+                      sx={{
+                        color: 'white',
+                        fontSize: { xs: '1.4rem', sm: '1.7rem', md: '2rem' }, // responsive font
+                        wordBreak: 'break-word'
+                      }}
+                    >
                       Modupe Oyekanmi
                     </Typography>
-                    <Typography variant="subtitle1" sx={{ color: '#60a5fa', fontWeight: 500, fontSize: '1.2rem' }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        color: '#60a5fa',
+                        fontWeight: 500,
+                        fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+                      }}
+                    >
                       Mortgage Broker
                     </Typography>
                   </CardContent>
                 </Card>
+
               </motion.div>
             </Grid>
             {/* Team Member 3 */}
@@ -258,40 +303,61 @@ function About() {
                 viewport={{ once: true }}
                 style={{ height: '100%' }}
               >
-                <Card sx={{ 
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', 
-                  color: 'white', 
-                  borderRadius: 6, 
-                  boxShadow: 8, 
-                  border: 'none', 
-                  height: 420, 
-                  minWidth: 340, 
-                  maxWidth: 420, 
-                  margin: '0 auto', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  p: 4 
-                }}>
-                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
-                    <Box sx={{ position: 'relative', width: 240 , height: 240, display: 'inline-block' }}>
-                      <Avatar
-                        src="/team/ev.png"
-                        alt="Evelyne Albrecht"
-                        sx={{ width: 240, height: 239, bgcolor: '#1e293b', boxShadow: 6 }}
-                      />
-                      <Box sx={{ position: 'absolute', top: 0, left: 0, width: 240, height: 240, border: '4px solid #222', borderRadius: '50%', pointerEvents: 'none' }} />
-                    </Box>
+                <Card
+                  sx={{
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                    color: 'white',
+                    borderRadius: 6,
+                    boxShadow: 8,
+                    border: 'none',
+                    width: '100%',
+                    maxWidth: { xs: '100%', sm: 380, md: 420 }, // responsive width
+                    minHeight: { xs: 400, sm: 420 },            // keeps consistent height
+                    margin: '0 auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    p: { xs: 2, sm: 3, md: 4 }                  // responsive padding
+                  }}
+                >
+                  <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <Avatar
+                      src="/team/ev.png"
+                      alt="Evelyne Albrecht"
+                      sx={{
+                        width: { xs: 160, sm: 200, md: 240 },   // responsive avatar sizing
+                        height: { xs: 160, sm: 200, md: 240 },
+                        bgcolor: '#1e293b',
+                        boxShadow: 6
+                      }}
+                    />
                   </Box>
                   <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                    <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: 'white', fontSize: '2rem' }}>
+                    <Typography
+                      variant="h5"
+                      fontWeight={700}
+                      gutterBottom
+                      sx={{
+                        color: 'white',
+                        fontSize: { xs: '1.4rem', sm: '1.7rem', md: '2rem' }, // responsive font size
+                        wordBreak: 'break-word'
+                      }}
+                    >
                       Evelyne Albrecht
                     </Typography>
-                    <Typography variant="subtitle1" sx={{ color: '#60a5fa', fontWeight: 500, fontSize: '1.2rem' }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        color: '#60a5fa',
+                        fontWeight: 500,
+                        fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+                      }}
+                    >
                       Compliance Officer
                     </Typography>
                   </CardContent>
                 </Card>
+
               </motion.div>
             </Grid>
           </Grid>
@@ -301,7 +367,7 @@ function About() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r text-white">
         <div className="max-w-7xl mx-auto container text-center">
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
@@ -315,15 +381,15 @@ function About() {
               Book a No-Obligation 30 Minute Consultation with GTM Finance
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <motion.button 
-                  onClick={() => setShowCalendly(true)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
-                >
-                  <Calendar size={20} />
-                  Schedule a Meeting
-                </motion.button>
+              <motion.button
+                onClick={() => setShowCalendly(true)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+              >
+                <Calendar size={20} />
+                Schedule a Meeting
+              </motion.button>
             </motion.div>
           </motion.div>
         </div>
@@ -340,7 +406,7 @@ function About() {
               Located in the heart of Thornbury, we're easily accessible and ready to meet with you in person.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="card">
@@ -359,7 +425,7 @@ function About() {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--success)' }}>
                       <Phone className="text-white" size={20} />
@@ -371,7 +437,7 @@ function About() {
                       </a>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-full" style={{ backgroundColor: '#a855f7' }}>
                       <Mail className="text-white" size={20} />
@@ -386,7 +452,7 @@ function About() {
                 </div>
               </div>
             </div>
-            
+
             <div className="map-container">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.4566391492453!2d145.02429707504692!3d-37.75588973073136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad64440a20c5be1%3A0xba61b672ba0aad86!2s1-3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1756291050617!5m2!1sen!2s"

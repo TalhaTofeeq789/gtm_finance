@@ -233,7 +233,7 @@ With professional guidance, you can secure the right loan to expand your portfol
 
 Here's how a mortgage broker can assist:
 
-• Tailored Loan Solutions: They assess your business needs and match you with loan products designed specifically for equipment purchases, working capital, or expansion.
+• Tailored Loan Solutions: They assess your business needs and match you with loan products designed specifically for equipment purchases, working capital, or expansion. 
 • Access to a Wide Range of Lenders: Mortgage brokers have access to a broad network of lenders, including specialist and non-bank lenders, offering flexibility and competitive rates.
 • Flexible Repayment Structures: They'll help you find loans with repayment terms that fit your cash flow and operational needs.
 • Navigating Complex Applications: Business loans often require extensive documentation. A mortgage broker ensures everything is prepared accurately and submitted efficiently.
@@ -459,7 +459,7 @@ With their expertise, a mortgage broker simplifies the borrowing process, allowi
                     variants={fadeInUp}
                     className="p-6 rounded-xl border transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl cursor-pointer"
                     style={{ 
-                      background: 'linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%)', 
+                      background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%)', 
                       borderColor: '#e5e7eb',
                       color: 'white',
                       boxShadow: '0 4px 20px rgba(16, 185, 129, 0.3)'
