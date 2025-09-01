@@ -100,7 +100,7 @@ function About() {
       </section>
 
       {/* About Us Content Section */}
-      <section id="about-section" className="py-20" style={{ backgroundColor: '#f0f9ff' }}>
+      <section id="about-section" className="py-20" style={{ backgroundColor: '#ffffff' }}>
         <div className="w-full max-w-4xl mx-auto px-4">
           <motion.div
             variants={staggerContainer}
@@ -145,7 +145,7 @@ function About() {
       </section>
 
       {/* Team Section with Material-UI */}
-      <section className="py-20" style={{ backgroundColor: '#f0f9ff' }}>
+      <section className="py-20" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
@@ -396,7 +396,7 @@ function About() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <section className="py-16" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-7xl mx-auto container">
           <div className="text-center space-y-6 mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: 'var(--text-primary)' }}>

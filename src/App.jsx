@@ -883,7 +883,7 @@ function App() {
         className="py-20 relative"
         style={{ 
           position: 'relative',
-          backgroundColor: '#f0f9ff'
+          backgroundColor: '#ffffff'
         }}
         initial="hidden"
         whileInView="visible"
@@ -1137,7 +1137,7 @@ function App() {
         className="py-20 relative"
         style={{
           position: 'relative',
-          backgroundColor: '#f0fdf4'
+          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)'
         }}
       >
         
@@ -1276,7 +1276,7 @@ function App() {
       <section 
         className="py-20 relative"
         style={{
-          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)'
+          background: '#ffffff'
         }}
       >
         
@@ -1430,12 +1430,79 @@ function App() {
         </div>
       </section>
 
+      {/* Map Section */}
+      <section className="py-16" style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <div className="max-w-7xl mx-auto container">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="card">
+                <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Office Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--accent)' }}>
+                      <MapPin className="text-white" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Address</h4>
+                      <p style={{ color: 'var(--text-secondary)' }}>
+                        1-3 Theobald Street<br />
+                        Thornbury, VIC 3071<br />
+                        Australia
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--success)' }}>
+                      <Phone className="text-white" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Phone</h4>
+                      <a href="tel:1300486346" style={{ color: 'var(--accent)' }} className="hover:opacity-75">
+                        1300 486 346
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-full" style={{ backgroundColor: '#a855f7' }}>
+                      <Mail className="text-white" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Email</h4>
+                      <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--accent)' }} className="hover:opacity-75">
+                        
+                        admin@gtmfinance.com.au
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.4566391492453!2d145.02429707504692!3d-37.75588973073136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad64440a20c5be1%3A0xba61b672ba0aad86!2s1-3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1756291050617!5m2!1sen!2s"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="GTM Finance Office Location"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section 
         id="contact" 
         className="py-20 relative"
         style={{
-          backgroundColor: '#e0f2fe'
+          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)'
         }}
       >
         
@@ -1580,73 +1647,6 @@ function App() {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-16" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-7xl mx-auto container">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="card">
-                <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Office Information</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--accent)' }}>
-                      <MapPin className="text-white" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Address</h4>
-                      <p style={{ color: 'var(--text-secondary)' }}>
-                        1-3 Theobald Street<br />
-                        Thornbury, VIC 3071<br />
-                        Australia
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full" style={{ backgroundColor: 'var(--success)' }}>
-                      <Phone className="text-white" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Phone</h4>
-                      <a href="tel:1300486346" style={{ color: 'var(--accent)' }} className="hover:opacity-75">
-                        1300 486 346
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full" style={{ backgroundColor: '#a855f7' }}>
-                      <Mail className="text-white" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Email</h4>
-                      <a href="mailto:lopeye@gtmfinance.com.au" style={{ color: 'var(--accent)' }} className="hover:opacity-75">
-                        
-                        admin@gtmfinance.com.au
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.4566391492453!2d145.02429707504692!3d-37.75588973073136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad64440a20c5be1%3A0xba61b672ba0aad86!2s1-3%20Theobald%20St%2C%20Thornbury%20VIC%203071%2C%20Australia!5e0!3m2!1sen!2s!4v1756291050617!5m2!1sen!2s"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="GTM Finance Office Location"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <Footer />
       
@@ -1656,7 +1656,7 @@ function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: '#1e293b',
+            background: '#ffffff',
             color: '#ffffff',
             border: '1px solid #475569',
             borderRadius: '8px',

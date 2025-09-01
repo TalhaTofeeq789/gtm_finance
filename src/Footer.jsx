@@ -8,7 +8,7 @@ function Footer() {
     <footer
       className="pt-16"
       style={{
-        background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)',
+        background: '#ffffff',
         color: '#374151'
       }}
     >
@@ -58,7 +58,7 @@ function Footer() {
           <div className="pl-8 md:pl-16">
             <h3
               className="text-xl font-semibold mb-4 tracking-wide uppercase"
-              style={{ color: '#9200e' }}
+              style={{ color: 'var(--accent-primary, #4f8cff)' }}
             >
               Quick Links
             </h3>
