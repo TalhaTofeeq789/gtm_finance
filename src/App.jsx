@@ -350,26 +350,6 @@ function App() {
   // Reviews data
   const reviews = [
     {
-      "name": "Bridgeta Dausi",
-      "rating": 5,
-      "review": "GTM Finance made securing my home loan a smooth and stress-free experience. Their team was professional, responsive, and always willing to explain things clearly. I'd like to give a special mention to Modupe, who went above and beyond to guide me through the process. Her patience, dedication, and attention to detail really stood out. I highly recommend GTM Finance to anyone looking for reliable support with their home loan."
-    },
-    {
-      "name": "Stanley Ugochukwu",
-      "rating": 5,
-      "review": "GTM Finance is very reliable, efficient and professional. Without them my loan acquisition journey would have been a nightmare. I was guided every step of the way and had all the support and encouragement I needed to bring my financial dreams to fruition. I would highly recommend them to anyone seeking seamless financial advise, anytime and anyday. Kudos!"
-    },
-    {
-      "name": "Nnaemeka Meribe",
-      "rating": 5,
-      "review": "Getting financial advice from GTM Finance is my best financial move ever. They have been meticulous, professional and reassuring in their dealings with me. It has been so far, so good and I recommend them without reservations."
-    },
-    {
-      "name": "Chidinma Maudlyn Ejiogu",
-      "rating": 5,
-      "review": "Exceptional experience with the team at GTM Finance. Assisted in getting me a new loan product and still kept in touch when it was time to refinance. Willing to listen and always puts the customer first."
-    },
-    {
       "name": "James Owen",
       "rating": 5,
       "review": "After the collapse of my previous super management team, Lopeye was extremely helpful in helping me with my very limited knowledge to start again. As stressful as it may well be to deal with older people with very limited knowledge about investment. Lopeye continues to help with every issue that arises."
