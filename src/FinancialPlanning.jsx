@@ -523,8 +523,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-auto font-semibold transition-colors duration-300 text-xs"
-                        style={{ color: '#ffffff' }}
+                        className="mt-auto font-semibold transition-colors duration-300 text-xs text-white bg-black bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded"
                       >
                         Explore →
                       </motion.button>
