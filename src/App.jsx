@@ -786,7 +786,7 @@ function App() {
                 <a 
                   href="#about"
                   className="btn-secondary text-lg px-8 py-4 transition-all duration-500"
-                  style={{ color: '#ffffff' }}
+                  style={{ color: '#1e3a8a', border: '2px solid #000000' }}
                 >
                   Learn More
                 </a>

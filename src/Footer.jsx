@@ -141,7 +141,7 @@ function Footer() {
               Copyright © 2025 GTM Finance. All rights reserved. ABN 5725 0815 625.
             </p>
             <p className="text-base font-medium mb-3" style={{ color: '#9200e' }}>
-              made by <a href="https://aicexpert.com/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors underline" style={{ color: '#9200e' }}>AICE XPERT</a>.
+              developed by <a href="https://aicexpert.com/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors underline" style={{ color: '#9200e' }}>AICE XPERT</a>.
             </p>
           </div>
         </div>
