@@ -680,7 +680,7 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <motion.section
+      <section
         id="home"
         className="hero-section pt-16 relative overflow-hidden"
         style={{
@@ -688,54 +688,18 @@ function App() {
           background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)',
           paddingBottom: '5rem'
         }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeInUp}
-        >
+      >
         
-        {/* Animated background particles */}
-        <div className="absolute inset-0" style={{ zIndex: 3 }}>
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
-              animate={{
-                y: [0, -100, 0],
-                x: [0, Math.random() * 50 - 25, 0],
-                opacity: [0.1, 0.4, 0.1],
-              }}
-              transition={{
-                duration: 16 + Math.random() * 8,
-                repeat: Infinity,
-                delay: Math.random() * 6,
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Remove animated background particles */}
         
-        <motion.div
+        <div
           className="max-w-7xl mx-auto container py-20 relative"
           style={{ zIndex: 10 }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeIn}
         >
-          <motion.div className="text-center space-y-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInLeft}
-              className="space-y-6"
-            >
-              {/* Main heading with typewriter effect */}
-              <motion.div className="text-4xl lg:text-6xl font-bold leading-tight min-h-[120px] lg:min-h-[200px]" style={{ color: '#1e40af' }} variants={zoomIn}>
+          <div className="text-center space-y-8">
+            <div className="space-y-6">
+              {/* Main heading with typewriter effect - KEEP THIS ANIMATION */}
+              <div className="text-4xl lg:text-6xl font-bold leading-tight min-h-[120px] lg:min-h-[200px]" style={{ color: '#1e40af' }}>
                 <div className="relative">
                   {/* First line with typewriter effect */}
                   <motion.span
@@ -817,222 +781,109 @@ function App() {
                     </motion.span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
               
-              {/* Subtitle with fade in */}
-              <motion.p 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.8, delay: 1.2 }}
+              {/* Subtitle without animation */}
+              <p 
                 className="text-xl leading-relaxed max-w-3xl mx-auto"
                 style={{ color: '#1e3a8a' }}
               >
                 We believe financial planning isn't just about numbers—it's about giving you clarity, 
                 confidence, and a structured strategy to achieve your goals.
-              </motion.p>
+              </p>
               
-              {/* Animated buttons */}
-              <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" variants={fadeInUp}>
-                <motion.a 
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
                   onClick={() => setShowCalendly(true)}
-                  whileHover={{ 
-                    scale: 1.02,
-                    color: "white",
-                    boxShadow: "0 8px 20px rgba(59, 130, 246, 0.3)"
-                  }}
-                  whileTap={{ scale: 0.98 }}
                   className="btn-primary text-lg px-8 py-4 relative overflow-hidden"
                   style={{ color: '#ffffff' }}
-                  initial={{ rotateX: 90 }}
-                  animate={{ rotateX: 0 }}
-                  transition={{ duration: 1.8, delay: 2.2 }}
                 >
-                  <motion.span
-                    whileHover={{ x: 3 }}
-                    transition={{ duration: 0.6 }}
-                    className="flex items-center justify-center gap-2"
-                  >
+                  <span className="flex items-center justify-center gap-2">
                     Schedule a Meeting <ArrowRight size={20} />
-                  </motion.span>
-                </motion.a>
-                <motion.a 
+                  </span>
+                </a>
+                <a 
                   href="#about"
-                  whileHover={{ 
-                    scale: 1.02,
-                    backgroundColor: "rgba(142, 202, 230, 0.1)",
-                    borderColor: "#8ECAE6"
-                  }}
-                  whileTap={{ scale: 0.98 }}
                   className="btn-secondary text-lg px-8 py-4 transition-all duration-500"
                   style={{ color: '#ffffff' }}
-                  initial={{ rotateX: -90 }}
-                  animate={{ rotateX: 0 }}
-                  transition={{ duration: 1.8, delay: 2.6 }}
                 >
                   Learn More
-                </motion.a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </motion.section>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* About Section */}
-      <motion.section
+      <section
         id="about"
         className="py-20 relative"
         style={{ 
           position: 'relative',
           backgroundColor: '#ffffff'
         }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeInUp}
       >
         
-        <motion.div className="max-w-7xl mx-auto container relative z-10" variants={zoomIn}>
-          <motion.div className="text-center space-y-6 mb-16" variants={slideInLeft}>
-            <motion.h2 variants={fadeInUp} className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
+        <div className="max-w-7xl mx-auto container relative z-10">
+          <div className="text-center space-y-6 mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold" style={{ color: '#1e40af' }}>
               We Get It, Because We're Just Like You
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-xl max-w-3xl mx-auto" style={{ color: '#374151' }}>
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#374151' }}>
               You've built a career you're proud of, and now it's time to take control of your financial future. 
               But knowing how to maximize wealth, minimize tax, and create financial security can feel overwhelming 
               without the right guidance.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
-          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={fadeIn}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Each about card */}
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 15px 35px rgba(59, 130, 246, 0.2)"
-              }}
-              transition={{ duration: 0.4 }}
-              className="relative group"
-            >
+            <div className="relative group">
               <div className="rounded-xl p-8 text-center border border-gray-200 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
-                <motion.div 
-                  whileHover={{ rotate: 180, scale: 1.05 }}
-                  transition={{ duration: 0.8 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30"
-                >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30">
                   <Users className="text-blue-900" size={32} />
-                </motion.div>
-                <motion.h3 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="text-xl font-semibold mb-4"
-                  style={{ color: '#ffffff' }}
-                >
+                </div>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#ffffff' }}>
                   Personal Approach
-                </motion.h3>
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  className="leading-relaxed"
-                  style={{ color: '#ffffff' }}
-                >
+                </h3>
+                <p className="leading-relaxed" style={{ color: '#ffffff' }}>
                   We understand your unique situation and create tailored strategies that work for your lifestyle.
-                </motion.p>
+                </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 15px 35px rgba(142, 202, 230, 0.2)"
-              }}
-              className="relative group"
-            >
+            <div className="relative group">
               <div className="rounded-xl p-8 text-center border border-gray-200 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
-                <motion.div 
-                  whileHover={{ rotate: 180, scale: 1.05 }}
-                  transition={{ duration: 0.8 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30"
-                >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30">
                   <Shield className="text-blue-900" size={32} />
-                </motion.div>
-                <motion.h3 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="text-xl font-semibold mb-4"
-                  style={{ color: '#ffffff' }}
-                >
+                </div>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#ffffff' }}>
                   Expert Guidance
-                </motion.h3>
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.6 }}
-                  className="leading-relaxed"
-                  style={{ color: '#ffffff' }}
-                >
+                </h3>
+                <p className="leading-relaxed" style={{ color: '#ffffff' }}>
                   With years of experience, we provide professional advice you can trust for your financial journey.
-                </motion.p>
+                </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              whileHover={{ 
-                scale: 1.02, 
-                y: -8,
-                boxShadow: "0 15px 35px rgba(142, 202, 230, 0.2)"
-              }}
-              className="relative group"
-            >
+            <div className="relative group">
               <div className="rounded-xl p-8 text-center border border-gray-200 hover:border-blue-400 hover:border-opacity-60 transition-all duration-500 h-full shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
-                <motion.div 
-                  whileHover={{ rotate: 180, scale: 1.05 }}
-                  transition={{ duration: 0.8 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30"
-                >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-white bg-opacity-20 border border-white border-opacity-30">
                   <TrendingUp className="text-blue-900" size={32} />
-                </motion.div>
-                <motion.h3 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  className="text-xl font-semibold mb-4"
-                  style={{ color: '#ffffff' }}
-                >
+                </div>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#ffffff' }}>
                   Results Driven
-                </motion.h3>
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.7, duration: 0.6 }}
-                  className="leading-relaxed"
-                  style={{ color: '#ffffff' }}
-                >
+                </h3>
+                <p className="leading-relaxed" style={{ color: '#ffffff' }}>
                   We focus on strategies that deliver real results and help you achieve your financial goals.
-                </motion.p>
+                </p>
               </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </motion.section>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Resources Section */}
       <section 

@@ -739,7 +739,7 @@ With expert guidance, you can confidently work toward your lifestyle goals while
 
       {/* Call to Action Section */}
       {!selectedService && (
-        <section className="py-20" style={{ backgroundColor: '#f8fafc' }}>
+        <section className="py-20" style={{ background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
